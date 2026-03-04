@@ -8,6 +8,23 @@ from __future__ import annotations
 
 import json
 import os
+import tempfile
+import threading
+
+
+# Process-wide lock map: per-file lock to reduce concurrent writer collisions.
+_LOCKS: dict[str, threading.Lock] = {}
+_LOCKS_GUARD = threading.Lock()
+
+
+def _get_lock(path: str) -> threading.Lock:
+    p = os.path.abspath(path)
+    with _LOCKS_GUARD:
+        lk = _LOCKS.get(p)
+        if lk is None:
+            lk = threading.Lock()
+            _LOCKS[p] = lk
+        return lk
 
 
 def _load_json(path: str):
@@ -16,8 +33,39 @@ def _load_json(path: str):
 
 
 def _save_json(path: str, data):
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    """Atomic JSON write: temp file + fsync + replace.
+
+    Keeps behavior unchanged while improving crash/concurrency safety.
+    """
+    target = os.path.abspath(path)
+    parent = os.path.dirname(target) or "."
+    os.makedirs(parent, exist_ok=True)
+
+    lock = _get_lock(target)
+    with lock:
+        fd, tmp_path = tempfile.mkstemp(prefix="._tmp_json_", suffix=".json", dir=parent)
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=2)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp_path, target)
+            # best-effort directory fsync to persist rename metadata
+            try:
+                dfd = os.open(parent, os.O_DIRECTORY)
+                try:
+                    os.fsync(dfd)
+                finally:
+                    os.close(dfd)
+            except Exception:
+                pass
+        finally:
+            # os.replace 成功后 tmp_path 不存在；失败时清理残留
+            try:
+                if os.path.exists(tmp_path):
+                    os.remove(tmp_path)
+            except Exception:
+                pass
 
 
 def load_agents_state(path: str, default_agents: list) -> list:

@@ -85,6 +85,8 @@ app.config.update(
 
 # Guard join-agent critical section to enforce per-key concurrency under parallel requests
 join_lock = threading.Lock()
+# Guard local main-state file writes
+state_lock = threading.Lock()
 
 # Generate a version timestamp once at server startup for cache busting
 VERSION_TIMESTAMP = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -229,9 +231,33 @@ def load_state():
 
 
 def save_state(state: dict):
-    """Save state to file"""
-    with open(STATE_FILE, "w", encoding="utf-8") as f:
-        json.dump(state, f, ensure_ascii=False, indent=2)
+    """Save state to file (atomic, non-breaking behavior)."""
+    target = os.path.abspath(STATE_FILE)
+    parent = os.path.dirname(target) or "."
+    os.makedirs(parent, exist_ok=True)
+
+    with state_lock:
+        fd, tmp_path = tempfile.mkstemp(prefix="._tmp_state_", suffix=".json", dir=parent)
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                json.dump(state, f, ensure_ascii=False, indent=2)
+                f.flush()
+                os.fsync(f.fileno())
+            os.replace(tmp_path, target)
+            try:
+                dfd = os.open(parent, os.O_DIRECTORY)
+                try:
+                    os.fsync(dfd)
+                finally:
+                    os.close(dfd)
+            except Exception:
+                pass
+        finally:
+            try:
+                if os.path.exists(tmp_path):
+                    os.remove(tmp_path)
+            except Exception:
+                pass
 
 
 # Initialize state
