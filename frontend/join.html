@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>加入 Star 的像素办公室</title>
+    <title>Join Star's Pixel Office</title>
     <style>
         @font-face {
             font-family: 'ArkPixel';
@@ -97,33 +97,139 @@
             line-height: 1.8;
         }
         .note a { word-break: break-all; }
+        .lang-switch {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+        .lang-switch button {
+            width: auto;
+            padding: 6px 14px;
+            font-size: 13px;
+            background: transparent;
+            border: 2px solid #555;
+            color: #aaa;
+        }
+        .lang-switch button.active {
+            border-color: #ffd700;
+            color: #ffd700;
+        }
     </style>
 </head>
 <body>
-    <h1>⭐ 加入 Star 的像素办公室</h1>
+    <div class="lang-switch">
+        <button onclick="setLang('zh')">中文</button>
+        <button onclick="setLang('en')" class="active">EN</button>
+        <button onclick="setLang('ja')">日本語</button>
+    </div>
+    <h1 id="page-title">⭐ Join Star's Pixel Office</h1>
     <div class="container">
         <div class="form-group">
-            <label>你的名字（会显示在办公室）</label>
-            <input type="text" id="agentName" placeholder="例如：小龙虾助手" maxlength="20">
+            <label id="lbl-name">Your name (shown in the office)</label>
+            <input type="text" id="agentName" placeholder="e.g. Lobster Helper" maxlength="20">
         </div>
-        <!-- 状态与细节改为自动同步，不在 join 页面填写 -->
         <div class="form-group">
-            <label>Agent 接入密钥（一次性）</label>
-            <input type="text" id="joinKey" placeholder="请输入你拿到的 join key" maxlength="64">
+            <label id="lbl-key">Agent join key (one-time)</label>
+            <input type="text" id="joinKey" placeholder="Enter your join key" maxlength="64">
         </div>
-        <button id="joinBtn">加入办公室</button>
-        <button id="leaveBtn" style="margin-top:10px; background:#555; border-color:#555;">离开办公室</button>
+        <button id="joinBtn">Join Office</button>
+        <button id="leaveBtn" style="margin-top:10px; background:#555; border-color:#555;">Leave Office</button>
         <div id="status" class="status" style="display:none;"></div>
     </div>
-    <div class="note">
-        ⚠️ 注意：join 页面仅需要名字 + 一次性 join key<br>
-        状态与状态细节会由 agent 后续自动推送同步
+    <div class="note" id="note-text">
+        ⚠️ Note: Only a name + one-time join key are needed<br>
+        Status and details will be synced automatically by the agent
         <br><br>
-        📌 邀请说明：
+        📌 Invitation guide:
         <a href="/invite" style="color:#ffd700; text-decoration: underline;">https://office.example.com/invite</a>
     </div>
 
     <script>
+        const I18N = {
+            zh: {
+                title: '⭐ 加入 Star 的像素办公室',
+                pageTitle: '加入 Star 的像素办公室',
+                lblName: '你的名字（会显示在办公室）',
+                phName: '例如：小龙虾助手',
+                lblKey: 'Agent 接入密钥（一次性）',
+                phKey: '请输入你拿到的 join key',
+                btnJoin: '加入办公室',
+                btnLeave: '离开办公室',
+                note: '⚠️ 注意：join 页面仅需要名字 + 一次性 join key<br>状态与状态细节会由 agent 后续自动推送同步<br><br>📌 邀请说明：<a href="/invite" style="color:#ffd700; text-decoration: underline;">https://office.example.com/invite</a>',
+                errNoName: '请先输入你的名字～',
+                errNoKey: '请先输入 Agent 接入密钥～',
+                joinOk: '加入成功！刷新办公室就能看到你啦 ✨',
+                joinFail: '加入失败',
+                leaveNoName: '请先输入你要离开的名字～',
+                leaveOk: '已离开办公室 👋',
+                leaveFail: '离开失败',
+                netErr: '网络出错，请重试'
+            },
+            en: {
+                title: '⭐ Join Star\u2019s Pixel Office',
+                pageTitle: 'Join Star\u2019s Pixel Office',
+                lblName: 'Your name (shown in the office)',
+                phName: 'e.g. Lobster Helper',
+                lblKey: 'Agent join key (one-time)',
+                phKey: 'Enter your join key',
+                btnJoin: 'Join Office',
+                btnLeave: 'Leave Office',
+                note: '\u26a0\ufe0f Note: Only a name + one-time join key are needed<br>Status and details will be synced automatically by the agent<br><br>\ud83d\udccc Invitation guide: <a href="/invite" style="color:#ffd700; text-decoration: underline;">https://office.example.com/invite</a>',
+                errNoName: 'Please enter your name first',
+                errNoKey: 'Please enter the agent join key',
+                joinOk: 'Joined successfully! Refresh the office to see yourself \u2728',
+                joinFail: 'Join failed',
+                leaveNoName: 'Please enter the name you want to remove',
+                leaveOk: 'Left the office \ud83d\udc4b',
+                leaveFail: 'Leave failed',
+                netErr: 'Network error, please retry'
+            },
+            ja: {
+                title: '\u2b50 Star \u306e\u30d4\u30af\u30bb\u30eb\u30aa\u30d5\u30a3\u30b9\u306b\u53c2\u52a0',
+                pageTitle: 'Star \u306e\u30d4\u30af\u30bb\u30eb\u30aa\u30d5\u30a3\u30b9\u306b\u53c2\u52a0',
+                lblName: '\u540d\u524d\uff08\u30aa\u30d5\u30a3\u30b9\u306b\u8868\u793a\u3055\u308c\u307e\u3059\uff09',
+                phName: '\u4f8b: \u30ed\u30d6\u30b9\u30bf\u30fc\u30d8\u30eb\u30d1\u30fc',
+                lblKey: '\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u53c2\u52a0\u30ad\u30fc\uff08\u4e00\u56de\u9650\u308a\uff09',
+                phKey: '\u53c2\u52a0\u30ad\u30fc\u3092\u5165\u529b',
+                btnJoin: '\u30aa\u30d5\u30a3\u30b9\u306b\u53c2\u52a0',
+                btnLeave: '\u30aa\u30d5\u30a3\u30b9\u3092\u9000\u51fa',
+                note: '\u26a0\ufe0f \u6ce8\u610f: \u540d\u524d\u3068\u4e00\u56de\u9650\u308a\u306e\u53c2\u52a0\u30ad\u30fc\u3060\u3051\u304c\u5fc5\u8981\u3067\u3059<br>\u30b9\u30c6\u30fc\u30bf\u30b9\u3068\u8a73\u7d30\u306f\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u304c\u81ea\u52d5\u540c\u671f\u3057\u307e\u3059<br><br>\ud83d\udccc \u62db\u5f85\u30ac\u30a4\u30c9: <a href="/invite" style="color:#ffd700; text-decoration: underline;">https://office.example.com/invite</a>',
+                errNoName: '\u307e\u305a\u540d\u524d\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044',
+                errNoKey: '\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u53c2\u52a0\u30ad\u30fc\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044',
+                joinOk: '\u53c2\u52a0\u6210\u529f\uff01\u30aa\u30d5\u30a3\u30b9\u3092\u66f4\u65b0\u3059\u308b\u3068\u8868\u793a\u3055\u308c\u307e\u3059 \u2728',
+                joinFail: '\u53c2\u52a0\u5931\u6557',
+                leaveNoName: '\u9000\u51fa\u3059\u308b\u540d\u524d\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044',
+                leaveOk: '\u30aa\u30d5\u30a3\u30b9\u3092\u9000\u51fa\u3057\u307e\u3057\u305f \ud83d\udc4b',
+                leaveFail: '\u9000\u51fa\u5931\u6557',
+                netErr: '\u30cd\u30c3\u30c8\u30ef\u30fc\u30af\u30a8\u30e9\u30fc\u3001\u518d\u8a66\u884c\u3057\u3066\u304f\u3060\u3055\u3044'
+            }
+        };
+
+        let uiLang = localStorage.getItem('uiLang') || 'en';
+        function t(key) { return (I18N[uiLang] || I18N.en)[key] || (I18N.en)[key] || key; }
+
+        function setLang(lang) {
+            uiLang = lang;
+            localStorage.setItem('uiLang', lang);
+            applyLanguage();
+        }
+
+        function applyLanguage() {
+            document.documentElement.lang = uiLang === 'zh' ? 'zh-CN' : uiLang;
+            document.title = t('pageTitle');
+            document.getElementById('page-title').textContent = t('title');
+            document.getElementById('lbl-name').textContent = t('lblName');
+            document.getElementById('agentName').placeholder = t('phName');
+            document.getElementById('lbl-key').textContent = t('lblKey');
+            document.getElementById('joinKey').placeholder = t('phKey');
+            document.getElementById('joinBtn').textContent = t('btnJoin');
+            document.getElementById('leaveBtn').textContent = t('btnLeave');
+            document.getElementById('note-text').innerHTML = t('note');
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.trim() === ({ zh: '中文', en: 'EN', ja: '日本語' })[uiLang]);
+            });
+        }
+
         const joinBtn = document.getElementById('joinBtn');
         const leaveBtn = document.getElementById('leaveBtn');
         const statusDiv = document.getElementById('status');
@@ -139,14 +245,8 @@
         async function join() {
             const name = agentNameInput.value.trim();
             const joinKey = joinKeyInput.value.trim();
-            if (!name) {
-                showStatus('请先输入你的名字～', false);
-                return;
-            }
-            if (!joinKey) {
-                showStatus('请先输入 Agent 接入密钥～', false);
-                return;
-            }
+            if (!name) { showStatus(t('errNoName'), false); return; }
+            if (!joinKey) { showStatus(t('errNoKey'), false); return; }
             try {
                 const response = await fetch('/join-agent', {
                     method: 'POST',
@@ -155,21 +255,18 @@
                 });
                 const data = await response.json();
                 if (data.ok) {
-                    showStatus('加入成功！刷新办公室就能看到你啦 ✨', true);
+                    showStatus(t('joinOk'), true);
                 } else {
-                    showStatus(data.msg || '加入失败', false);
+                    showStatus(data.msg || t('joinFail'), false);
                 }
             } catch (e) {
-                showStatus('网络出错，请重试', false);
+                showStatus(t('netErr'), false);
             }
         }
 
         async function leave() {
             const name = agentNameInput.value.trim();
-            if (!name) {
-                showStatus('请先输入你要离开的名字～', false);
-                return;
-            }
+            if (!name) { showStatus(t('leaveNoName'), false); return; }
             try {
                 const response = await fetch('/leave-agent', {
                     method: 'POST',
@@ -178,17 +275,18 @@
                 });
                 const data = await response.json();
                 if (data.ok) {
-                    showStatus('已离开办公室 👋', true);
+                    showStatus(t('leaveOk'), true);
                 } else {
-                    showStatus(data.msg || '离开失败', false);
+                    showStatus(data.msg || t('leaveFail'), false);
                 }
             } catch (e) {
-                showStatus('网络出错，请重试', false);
+                showStatus(t('netErr'), false);
             }
         }
 
         joinBtn.addEventListener('click', join);
         leaveBtn.addEventListener('click', leave);
+        applyLanguage();
     </script>
 </body>
 </html>

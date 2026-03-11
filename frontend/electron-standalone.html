@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Star 的像素办公室</title>
+    <title>Star's Pixel Office</title>
     <style>
         @font-face {
             font-family: 'ArkPixel';
@@ -1594,11 +1594,11 @@
 </head>
 <body>
     <div id="window-controls">
-        <button id="btn-close" class="traffic-btn close" title="关闭"></button>
-        <button id="btn-minimize-mode" class="traffic-btn min" title="最小化模式"></button>
-        <button id="btn-open-frontend" class="traffic-btn max" title="回到前端界面"></button>
+        <button id="btn-close" class="traffic-btn close" title="Close"></button>
+        <button id="btn-minimize-mode" class="traffic-btn min" title="Minimize"></button>
+        <button id="btn-open-frontend" class="traffic-btn max" title="Open Frontend"></button>
     </div>
-    <div id="status-fab">加载中...</div>
+    <div id="status-fab">Loading...</div>
     <!-- 加载遮罩 -->
     <div id="loading-overlay">
         <div id="loading-text">Loading Star’s pixel office...</div>
@@ -1609,10 +1609,10 @@
     
     <div id="main-stage">
         <div id="game-container">
-            <div id="status-text">加载中...</div>
+            <div id="status-text">Loading...</div>
             <div id="office-plaque-dom">
                 <span class="office-plaque-star">⭐</span>
-                <span id="office-plaque-text">海辛小龙虾的办公室</span>
+                <span id="office-plaque-text">Star’s Pixel Office</span>
                 <span class="office-plaque-star">⭐</span>
             </div>
         </div>
@@ -1621,32 +1621,32 @@
     <div id="bottom-panels">
         <!-- Memo 面板 -->
         <div id="memo-panel">
-            <div id="memo-title">昨 日 小 记</div>
+            <div id="memo-title">YESTERDAY NOTES</div>
             <div id="memo-date"></div>
             <div class="memo-decoration">─ ─ ─ ─ ─</div>
             <div id="memo-content">
-                <div id="memo-placeholder">加载中...</div>
+                <div id="memo-placeholder">Loading...</div>
             </div>
             <div class="memo-decoration">─ ─ ─ ─ ─</div>
         </div>
         
         <!-- 状态控制栏 -->
         <div id="control-bar">
-            <div id="control-bar-title">Star 状态</div>
+            <div id="control-bar-title">Star Status</div>
             <div id="control-buttons">
-                <button id="btn-state-idle" onclick="setState('idle', getStateDetailByState('idle'))">待命</button>
-                <button id="btn-state-writing" onclick="setState('writing', getStateDetailByState('writing'))">工作</button>
-                <button id="btn-state-syncing" onclick="setState('syncing', getStateDetailByState('syncing'))">同步</button>
-                <button id="btn-state-error" onclick="setState('error', getStateDetailByState('error'))">报警</button>
-                <button id="btn-open-drawer" onclick="openAssetWindowFromMain()">装修房间</button>
+                <button id="btn-state-idle" onclick="setState('idle', getStateDetailByState('idle'))">Idle</button>
+                <button id="btn-state-writing" onclick="setState('writing', getStateDetailByState('writing'))">Work</button>
+                <button id="btn-state-syncing" onclick="setState('syncing', getStateDetailByState('syncing'))">Sync</button>
+                <button id="btn-state-error" onclick="setState('error', getStateDetailByState('error'))">Alert</button>
+                <button id="btn-open-drawer" onclick="openAssetWindowFromMain()">Decorate Room</button>
             </div>
         </div>
 
         <!-- Guest Agent 名单面板（右下角） -->
         <div id="guest-agent-panel">
-            <div id="guest-agent-panel-title">访 客 列 表</div>
+            <div id="guest-agent-panel-title">VISITOR LIST</div>
             <div id="guest-agent-list">
-                <div style="color:#9ca3af;font-size:12px;text-align:center;padding:20px 0;">正在加载访客...</div>
+                <div style="color:#9ca3af;font-size:12px;text-align:center;padding:20px 0;">Loading visitors...</div>
             </div>
             </div>
         </div>
@@ -1656,22 +1656,22 @@
     <div id="room-loading-overlay" aria-live="polite" aria-busy="true">
         <div class="room-loading-inner">
             <div id="room-loading-emoji">🦞</div>
-            <div id="room-loading-text">正在打包虾头……</div>
+            <div id="room-loading-text">Packing today’s luggage of inspiration…</div>
         </div>
     </div>
 
     <div id="asset-drawer-backdrop" onclick="toggleAssetDrawer(false)"></div>
     <aside id="asset-drawer" data-no-window-drag="1">
         <div id="asset-drawer-header" data-no-window-drag="1">
-            <span>装修房间 · 资产侧边栏</span>
-            <button id="btn-close-drawer" onclick="toggleAssetDrawer(false)">关闭</button>
+            <span>Decorate Room · Asset Sidebar</span>
+            <button id="btn-close-drawer" onclick="toggleAssetDrawer(false)">Close</button>
         </div>
         <div id="asset-drawer-body">
             <div id="asset-auth-gate" class="asset-preview-box">
-                <div class="asset-preview-title">请输入装修验证码</div>
+                <div class="asset-preview-title">Enter Decor Passcode</div>
                 <div class="asset-toolbar">
-                    <input id="asset-pass-input" type="password" placeholder="输入验证码" />
-                    <button onclick="unlockAssetDrawer()">验证</button>
+                    <input id="asset-pass-input" type="password" placeholder="Enter passcode" />
+                    <button onclick="unlockAssetDrawer()">Verify</button>
                 </div>
                 <div id="asset-auth-msg" class="asset-sub"></div>
             </div>
@@ -1679,66 +1679,66 @@
             <div id="asset-main-content" style="display:none;">
                 <div id="asset-move-panel">
                     <div class="asset-toolbar" id="asset-move-row">
-                        <button id="btn-move-house" class="btn-move" onclick="generateRpgBackground()">📦 搬新家</button>
-                        <button id="btn-back-home" class="btn-home" onclick="restoreHomeBackground()">🐚 回老家</button>
+                        <button id="btn-move-house" class="btn-move" onclick="generateRpgBackground()">📦 New Home</button>
+                        <button id="btn-back-home" class="btn-home" onclick="restoreHomeBackground()">🐚 Go Home</button>
                     </div>
                     <div class="asset-toolbar" id="asset-broker-row">
-                        <button class="btn-broker" onclick="toggleBrokerPanel()">🤝 找中介</button>
-                        <button id="btn-diy" class="btn-diy" onclick="toggleManualPanel()">🪚 自己装</button>
+                        <button class="btn-broker" onclick="toggleBrokerPanel()">🤝 Broker</button>
+                        <button id="btn-diy" class="btn-diy" onclick="toggleManualPanel()">🪚 DIY</button>
                     </div>
                     <div id="asset-move-result" class="asset-sub" style="margin-top:4px; margin-bottom:6px;"></div>
                     <div id="asset-broker-panel">
-                        <div class="asset-sub" style="margin-bottom:6px;">写你的风格主题（严格保持原始房间结构，只改变视觉风格）</div>
-                        <textarea id="asset-broker-prompt" placeholder="例如：像素风赛博东京夜景，霓虹灯、雨夜地面反光、蓝紫主色"></textarea>
+                        <div class="asset-sub" id="broker-style-hint" style="margin-bottom:6px;">Describe your style theme (room layout stays the same, only visual style changes)</div>
+                        <textarea id="asset-broker-prompt" placeholder="e.g. Pixel-art cyber Tokyo night, neon lights, rainy reflections, blue-purple palette"></textarea>
                         <div class="asset-toolbar" style="margin-top:6px; gap:8px; align-items:center; justify-content:flex-start;">
-                            <span id="speed-mode-label" class="asset-sub" style="min-width:62px;">生成模式</span>
+                            <span id="speed-mode-label" class="asset-sub" style="min-width:62px;">Render Mode</span>
                             <button id="speed-fast-btn" type="button" onclick="setSpeedMode('fast')" style="background:#22c55e;color:#052e16;border-color:#16a34a;">🍌2</button>
                             <button id="speed-quality-btn" type="button" onclick="setSpeedMode('quality')" style="background:#334155;color:#e5e7eb;border-color:#475569;">🍌Pro</button>
                         </div>
                         <details id="asset-gemini-panel" style="margin-top:6px; border:1px dashed #334155; border-radius:8px; padding:8px; background:#0b1220;">
-                            <summary id="gemini-panel-summary" style="cursor:pointer; color:#cbd5e1;">🔐 API 设置（可折叠）</summary>
+                            <summary id="gemini-panel-summary" style="cursor:pointer; color:#cbd5e1;">🔐 API Settings (collapsible)</summary>
                             <div id="asset-gemini-config" style="display:block; margin-top:6px;">
-                                <div id="gemini-config-hint" class="asset-sub" style="margin-bottom:4px;">可选：填写你的生图 API Key（留空不影响基础功能）</div>
-                                <div class="asset-sub" style="margin-bottom:6px;"><a id="gemini-api-doc-link" href="https://ai.google.dev/gemini-api/docs/api-key?hl=zh-cn" target="_blank" rel="noopener noreferrer">📘 如何申请 Google API Key</a></div>
+                                <div id="gemini-config-hint" class="asset-sub" style="margin-bottom:4px;">Optional: set your image API key (base features work without it)</div>
+                                <div class="asset-sub" style="margin-bottom:6px;"><a id="gemini-api-doc-link" href="https://ai.google.dev/gemini-api/docs/api-key" target="_blank" rel="noopener noreferrer">📘 How to get a Google API Key</a></div>
                                 <div id="gemini-mask-status" class="asset-sub" style="margin-bottom:6px; color:#a7f3d0;"></div>
                                 <div class="asset-toolbar" style="gap:6px; flex-wrap:wrap;">
-                                    <input id="gemini-api-key-input" type="password" placeholder="粘贴 GEMINI_API_KEY（不会回显）" style="min-width:220px; flex:1;" autocomplete="new-password" />
-                                    <button id="btn-save-gemini-key" onclick="saveGeminiConfigFromUI()">保存 Key</button>
+                                    <input id="gemini-api-key-input" type="password" placeholder="Paste GEMINI_API_KEY (input hidden)" style="min-width:220px; flex:1;" autocomplete="new-password" />
+                                    <button id="btn-save-gemini-key" onclick="saveGeminiConfigFromUI()">Save Key</button>
                                 </div>
                                 <div id="gemini-config-msg" class="asset-sub" style="margin-top:4px;"></div>
                             </div>
                         </details>
                         <div id="asset-broker-actions">
-                            <button onclick="generateCustomRpgBackground()">按中介方案搬家</button>
+                            <button onclick="generateCustomRpgBackground()">Follow Broker</button>
                         </div>
                     </div>
                 </div>
 
                 <div id="asset-home-actions-panel" class="asset-preview-box" style="margin-bottom:10px;">
                     <div class="asset-toolbar" style="margin-bottom:6px; gap:8px;">
-                        <button id="btn-back-last-bg" class="btn-home" onclick="restoreLastGeneratedBackground()">↩️ 回上一个家</button>
-                        <button id="btn-favorite-home" class="btn-home" onclick="saveCurrentHomeFavorite()">⭐ 收藏这个家</button>
+                        <button id="btn-back-last-bg" class="btn-home" onclick="restoreLastGeneratedBackground()">↩️ Last One</button>
+                        <button id="btn-favorite-home" class="btn-home" onclick="saveCurrentHomeFavorite()">⭐ Save This Home</button>
                     </div>
                     <div id="asset-home-favorites" class="asset-preview-box" style="margin:0;">
-                        <div id="asset-home-favorites-title" class="asset-preview-title">🏠 收藏的家</div>
+                        <div id="asset-home-favorites-title" class="asset-preview-title">🏠 Saved Homes</div>
                         <div id="asset-home-favorites-list" class="home-fav-list"></div>
                     </div>
                 </div>
 
                 <div id="asset-manual-panel">
                     <div class="asset-toolbar">
-                        <input id="asset-search" placeholder="搜索资产名（如 desk / sofa / star）" oninput="renderAssetDrawerList()" />
+                        <input id="asset-search" placeholder="Search assets (desk / sofa / star)" oninput="renderAssetDrawerList()" />
                     </div>
                     <div id="asset-list"></div>
                     <div id="asset-upload-panel">
                         <input id="asset-upload-file" type="file" accept="image/*" style="display:none;" />
                         <div class="asset-toolbar" style="margin-top:0; margin-bottom:6px; gap:8px;">
-                            <button id="asset-choose-btn" onclick="openInlineAssetUploader()">上传替换素材</button>
-                            <button id="asset-commit-refresh-btn" onclick="commitAndRefresh()" disabled style="opacity:.55;">确认并刷新</button>
+                            <button id="asset-choose-btn" onclick="openInlineAssetUploader()">Upload Asset</button>
+                            <button id="asset-commit-refresh-btn" onclick="commitAndRefresh()" disabled style="opacity:.55;">Apply Refresh</button>
                         </div>
                         <div class="asset-toolbar" style="margin-top:0; margin-bottom:6px; gap:8px;">
-                            <button id="asset-reset-default-btn" onclick="resetSelectedAssetToDefault()" disabled style="opacity:.55;">重置为默认资产</button>
-                            <button id="asset-restore-prev-btn" onclick="restoreSelectedAssetPrev()" disabled style="opacity:.55;">用上一版</button>
+                            <button id="asset-reset-default-btn" onclick="resetSelectedAssetToDefault()" disabled style="opacity:.55;">Reset Default</button>
+                            <button id="asset-restore-prev-btn" onclick="restoreSelectedAssetPrev()" disabled style="opacity:.55;">Restore Prev</button>
                         </div>
                         <div id="asset-upload-result" class="asset-sub"></div>
                     </div>
@@ -1750,10 +1750,10 @@
         <div id="coords-display">X: 0 | Y: 0</div>
     </div>
     <button id="coords-toggle" style="position:fixed; top:calc(env(safe-area-inset-top, 0px) + 12px); right:12px; z-index:999999; padding:8px 10px; font-family:ArkPixel,monospace; font-size:13px; cursor:pointer; border:2px solid #333; border-radius:5px; background:#333; color:#fff;">
-        显示坐标
+        Show Coords
     </button>
     <button id="pan-toggle" style="position:fixed; top:calc(env(safe-area-inset-top, 0px) + 12px); left:12px; z-index:999999; padding:8px 10px; font-family:ArkPixel,monospace; font-size:13px; cursor:pointer; border:2px solid #333; border-radius:5px; background:#333; color:#fff;">
-        移动视野
+        Pan View
     </button>
     <div id="lang-toggle-group" style="position:fixed; top:calc(env(safe-area-inset-top, 0px) + 52px); left:12px; z-index:999999; display:flex; align-items:center;">
         <button id="lang-btn-en" onclick="setUILanguage('en')" style="cursor:pointer;">EN</button>
@@ -1772,35 +1772,36 @@
                 controlTitle: 'Star 状态',
                 btnIdle: '待命', btnWork: '工作', btnSync: '同步', btnError: '报警', btnDecor: '装修房间',
                 drawerTitle: '装修房间 · 资产侧边栏', drawerClose: '关闭',
-                authTitle: '请输入装修验证码', authPlaceholder: '输入验证码', authVerify: '验证', authDefaultPassHint: '默认密码：1234（可随时让我帮你改，建议改成强密码）',
+                authTitle: 'Enter Decor Passcode', authPlaceholder: '输入验证码', authVerify: '验证', authDefaultPassHint: '默认密码：1234（可随时让我帮你改，建议改成强密码）',
                 drawerVisibilityTip: '可见性：点击条目右侧眼睛按钮切换该资产显示',
                 hideDrawer: '👁 隐藏侧边栏', showDrawer: '👁 显示侧边栏',
                 assetHide: '隐藏', assetShow: '显示',
-                resetToDefault: '重置为默认资产', restorePrevAsset: '用上一版',
-                btnMove: '📦 搬新家', btnHome: '🐚 回老家', btnHomeLast: '↩️ 回上一个家', btnHomeFavorite: '⭐ 收藏这个家', btnBroker: '🤝 找中介', btnDIY: '🪚 自己装', btnBrokerGo: '听中介的',
-                homeFavTitle: '🏠 收藏的家', homeFavEmpty: '还没有收藏，先点“⭐ 收藏这个家”', homeFavApply: '替换到当前地图', homeFavSaved: '✅ 已收藏当前地图', homeFavApplied: '✅ 已替换为收藏地图',
+                resetToDefault: 'Reset Default', restorePrevAsset: 'Restore Prev',
+                btnMove: '📦 New Home', btnHome: '🐚 Go Home', btnHomeLast: '↩️ Last One', btnHomeFavorite: '⭐ Save This Home', btnBroker: '🤝 Broker', btnDIY: '🪚 DIY', btnBrokerGo: '听中介的',
+                homeFavTitle: '🏠 Saved Homes', homeFavEmpty: '还没有收藏，先点“⭐ Save This Home”', homeFavApply: '替换到当前地图', homeFavSaved: '✅ 已收藏当前地图', homeFavApplied: '✅ 已替换为收藏地图',
                 brokerHint: '你会给龙虾推荐什么样的房子',
+                brokerStyleHint: '写你的风格主题（严格保持原始房间结构，只改变视觉风格）',
                 brokerPromptPh: '例如：故宫主题、莫奈风格、地牢主题、兵马俑主题……',
                 brokerNeedPrompt: '请先输入中介方案描述',
-                brokerGenerating: '🏘️ 正在按中介方案生成底图，请稍候（约20-90秒）...',
+                brokerGenerating: '🏘️ Generating background from broker plan，请稍候（约20-90s)...',
                 brokerDone: '✅ 已按中介方案生成并替换底图，正在刷新房间...',
                 moveSuccess: '✅ 搬家成功！',
                 brokerMissingKey: '❌ 生图失败：缺少 GEMINI API Key，请在下方填写并保存后重试',
-                geminiPanelTitle: '🔐 API 设置（可折叠）', geminiHint: '可选：填写你的生图 API Key（留空不影响基础功能）', geminiApiDoc: '📘 如何申请 Google API Key', geminiInputPh: '粘贴 GEMINI_API_KEY（不会回显）', geminiSaveKey: '保存 Key', geminiMaskNoKey: '当前状态：未配置 Key', geminiMaskHasKey: '当前已配置：',
-                speedModeLabel: '生成模式', speedFast: '🍌2', speedQuality: '🍌Pro',
-                searchPlaceholder: '搜索资产名（如 desk / sofa / star）', loaded: '已加载', allAssets: '全部资产',
-                chooseImage: '上传替换素材', confirmUpload: '确认并刷新', uploadPending: '待上传', uploadTarget: '目标',
+                geminiPanelTitle: '🔐 API Settings (collapsible)', geminiHint: 'Optional: set your image API key (base features work without it)', geminiApiDoc: '📘 How to get a Google API Key', geminiInputPh: 'Paste GEMINI_API_KEY (input hidden)', geminiSaveKey: 'Save Key', geminiMaskNoKey: '当前状态：未配置 Key', geminiMaskHasKey: '当前已配置：',
+                speedModeLabel: 'Render Mode', speedFast: '🍌2', speedQuality: '🍌Pro',
+                searchPlaceholder: 'Search assets (desk / sofa / star)', loaded: '已加载', allAssets: '全部资产',
+                chooseImage: 'Upload Asset', confirmUpload: 'Apply Refresh', uploadPending: '待上传', uploadTarget: '目标',
                 assetHintNotInScene: '当前场景未检测到此对象，仍可替换文件（刷新后生效）',
                 assetHintDefault: '通用素材：建议保持原图尺寸、透明通道与视觉重心一致，避免错位或失真',
-                showCoords: '显示坐标', hideCoords: '隐藏坐标', moveView: '移动视野', lockView: '锁定视野',
-                memoTitle: '昨 日 小 记', guestTitle: '访 客 列 表', officeTitle: '海辛小龙虾的办公室',
+                showCoords: 'Show Coords', hideCoords: '隐藏坐标', moveView: 'Pan View', lockView: '锁定视野',
+                memoTitle: '昨 日 小 记', guestTitle: '访 客 列 表', officeTitle: 'Star’s Pixel Office',
                 loadingOffice: '正在加载 Star 的像素办公室...',
                 panelExpand: '展开', panelCollapse: '收起',
-                hiddenTag: '已隐藏', assetListLoaded: '已加载资产', sceneCaptured: '场景抓取', assetListLoadFailed: '资产加载失败，请点“刷新”重试',
-                authNeedInput: '请输入验证码', authPassOk: '验证通过', authPassWrong: '验证码错误',
-                stateDetailIdle: '待命', stateDetailWriting: '整理文档', stateDetailResearching: '搜索信息', stateDetailExecuting: '执行任务', stateDetailSyncing: '同步备份', stateDetailError: '出错了',
-                stateLabelIdle: '待命', stateLabelWriting: '整理文档', stateLabelResearching: '搜索信息', stateLabelExecuting: '执行任务', stateLabelSyncing: '同步备份', stateLabelError: '出错了',
-                statusBrokerDecorating: '正在处理中介装修方案', statusMovingHome: '正在搬新家', statusRestoreHome: '正在回老家', statusRestoreLastBg: '正在回退到上一次背景', statusApplyFavorite: '正在替换收藏地图'
+                hiddenTag: 'Hidden', assetListLoaded: 'Loaded assets', sceneCaptured: 'Scene objects', assetListLoadFailed: '资产Failed to load，请点“刷新”重试',
+                authNeedInput: 'Please enter passcode', authPassOk: 'Verified', authPassWrong: 'Wrong passcode',
+                stateDetailIdle: '待命', stateDetailWriting: '整理文档', stateDetailResearching: '搜索信息', stateDetailExecuting: 'Executing任务', stateDetailSyncing: '同步备份', stateDetailError: '出错了',
+                stateLabelIdle: '待命', stateLabelWriting: '整理文档', stateLabelResearching: '搜索信息', stateLabelExecuting: 'Executing任务', stateLabelSyncing: '同步备份', stateLabelError: '出错了',
+                statusBrokerDecorating: 'Processing broker plan', statusMovingHome: 'Moving to new home', statusRestoreHome: 'Going home', statusRestoreLastBg: 'Restoring last background', statusApplyFavorite: 'Applying saved home'
             },
             en: {
                 controlTitle: 'Star Status',
@@ -1814,6 +1815,7 @@
                 btnMove: '📦 New Home', btnHome: '🐚 Go Home', btnHomeLast: '↩️ Last One', btnHomeFavorite: '⭐ Save This Home', btnBroker: '🤝 Broker', btnDIY: '🪚 DIY', btnBrokerGo: 'Follow Broker',
                 homeFavTitle: '🏠 Saved Homes', homeFavEmpty: 'No saved homes yet. Tap “⭐ Save This Home” first.', homeFavApply: 'Apply to Current Map', homeFavSaved: '✅ Current map saved', homeFavApplied: '✅ Applied saved home',
                 brokerHint: 'What kind of house would you recommend for Lobster?',
+                brokerStyleHint: 'Describe your style theme (room layout stays the same, only visual style changes)',
                 brokerPromptPh: 'e.g. Forbidden City theme, Monet style, dungeon theme, Terracotta Warriors theme...',
                 brokerNeedPrompt: 'Please enter broker style prompt first',
                 brokerGenerating: '🏘️ Generating room background from broker plan, please wait (20-90s)...',
@@ -1848,9 +1850,10 @@
                 btnMove: '📦 引っ越し', btnHome: '🐚 実家に戻る', btnHomeLast: '↩️ ひとつ前へ', btnHomeFavorite: '⭐ この家を保存', btnBroker: '🤝 仲介', btnDIY: '🪚 自分で装飾', btnBrokerGo: '仲介に任せる',
                 homeFavTitle: '🏠 保存した家', homeFavEmpty: 'まだ保存がありません。先に「⭐ この家を保存」を押してください。', homeFavApply: '現在のマップに適用', homeFavSaved: '✅ 現在のマップを保存しました', homeFavApplied: '✅ 保存した家を適用しました',
                 brokerHint: 'ロブスターにはどんな家をおすすめしますか',
+                brokerStyleHint: 'スタイルテーマを入力（部屋構造はそのまま、ビジュアルだけ変更）',
                 brokerPromptPh: '例：故宮テーマ、モネ風、ダンジョン風、兵馬俑テーマ…',
                 brokerNeedPrompt: '先に仲介プランの説明を入力してください',
-                brokerGenerating: '🏘️ 仲介プランで背景を生成中（20〜90秒）...',
+                brokerGenerating: '🏘️ 仲介プランで背景を生成中（20〜90s)...',
                 brokerDone: '✅ 仲介プランを適用して背景を更新しました。部屋を更新中...',
                 moveSuccess: '✅ 引っ越し成功！',
                 brokerMissingKey: '❌ 生成失敗：GEMINI APIキーが未設定です。下で入力して保存してください。',
@@ -2379,11 +2382,11 @@
                     memoDate.textContent = data.date || '';
                     memoContent.innerHTML = data.memo.replace(/\n/g, '<br>');
                 } else {
-                    memoContent.innerHTML = '<div id="memo-placeholder">暂无昨日日记</div>';
+                    memoContent.innerHTML = '<div id="memo-placeholder">No diary entry for yesterday</div>';
                 }
             } catch (e) {
-                console.error('加载 memo 失败:', e);
-                memoContent.innerHTML = '<div id="memo-placeholder">加载失败</div>';
+                console.error('Failed to load memo:', e);
+                memoContent.innerHTML = '<div id="memo-placeholder">Failed to load</div>';
             }
         }
 
@@ -2422,20 +2425,26 @@
         // 懒加载逻辑已取消（体验优先：装饰首屏直接出现）
 
         const STATES = {
-            idle: { name: '待命', area: 'breakroom' },
-            writing: { name: '整理文档', area: 'writing' },
-            researching: { name: '搜索信息', area: 'researching' },
-            executing: { name: '执行任务', area: 'writing' },
-            syncing: { name: '同步备份', area: 'writing' },
-            error: { name: '出错了', area: 'error' }
+            idle: { area: 'breakroom' },
+            writing: { area: 'writing' },
+            researching: { area: 'researching' },
+            executing: { area: 'writing' },
+            syncing: { area: 'writing' },
+            error: { area: 'error' }
         };
+        const STATE_NAMES = {
+            zh: { idle: '待命', writing: '整理文档', researching: '搜索信息', executing: 'Executing任务', syncing: '同步备份', error: '出错了' },
+            en: { idle: 'Idle', writing: 'Organizing Docs', researching: 'Researching', executing: 'Executing', syncing: 'Syncing', error: 'Error' },
+            ja: { idle: '待機', writing: '文書整理', researching: '情報検索', executing: 'タスク実行', syncing: '同期', error: 'エラー' }
+        };
+        function getStateName(key) { return (STATE_NAMES[uiLang] || STATE_NAMES.en)[key] || key; }
 
         const BUBBLE_TEXTS = {
             zh: {
                 idle: ['待命中：耳朵竖起来了','我在这儿，随时可以开工','先把桌面收拾干净再说','呼——给大脑放个风','今天也要优雅地高效','等待，是为了更准确的一击','咖啡还热，灵感也还在','我在后台给你加 Buff','状态：静心 / 充电','小猫说：慢一点也没关系'],
                 writing: ['进入专注模式：勿扰','先把关键路径跑通','我来把复杂变简单','把 bug 关进笼子里','写到一半，先保存','把每一步都做成可回滚','今天的进度，明天的底气','先收敛，再发散','让系统变得更可解释','稳住，我们能赢'],
                 researching: ['我在挖证据链','让我把信息熬成结论','找到了：关键在这里','先把变量控制住','我在查：它为什么会这样','把直觉写成验证','先定位，再优化','别急，先画因果图'],
-                executing: ['执行中：不要眨眼','把任务切成小块逐个击破','开始跑 pipeline','一键推进：走你','让结果自己说话','先做最小可行，再做最美版本'],
+                executing: ['Executing中：不要眨眼','把任务切成小块逐个击破','开始跑 pipeline','一键推进：走你','让结果自己说话','先做最小可行，再做最美版本'],
                 syncing: ['同步中：把今天锁进云里','备份不是仪式，是安全感','写入中…别断电','把变更交给时间戳','云端对齐：咔哒','同步完成前先别乱动','把未来的自己从灾难里救出来','多一份备份，少一份后悔'],
                 error: ['警报响了：先别慌','我闻到 bug 的味道了','先复现，再谈修复','把日志给我，我会说人话','错误不是敌人，是线索','把影响面圈起来','先止血，再手术','我在：马上定位根因','别怕，这种我见多了','报警中：让问题自己现形'],
                 cat: ['喵~','咕噜咕噜…','尾巴摇一摇','晒太阳最开心','有人来看我啦','我是这个办公室的吉祥物','伸个懒腰','今天的罐罐准备好了吗','呼噜呼噜','这个位置视野最好']
@@ -2463,7 +2472,7 @@
         let game, star, sofa, serverroom, officeBgSprite, areas = {}, currentState = 'idle', pendingDesiredState = null, statusText, lastFetch = 0, lastBlink = 0, lastBubble = 0, targetX = 660, targetY = 170, bubble = null, typewriterText = '', typewriterTarget = '', typewriterIndex = 0, lastTypewriter = 0, syncAnimSprite = null, syncAnimPlayable = false, catBubble = null, selectionBoxGraphics = null;
         const IDLE_SOFA_ANCHOR = { x: 798, y: 272 }; // 统一中心锚点（原 sofa 左上 670,144 的中心）
         const IDLE_STAR_SCALE = 1.0; // star idle 改为256帧原生显示，不再放大
-        // flowers 精灵表规格：固定单帧 128x128，4x4
+        // flowers 精灵表规格：固定单f 128x128，4x4
         let FLOWERS_FRAME_W = 65;
         let FLOWERS_FRAME_H = 65;
         let FLOWERS_FRAME_COLS = 4;
@@ -2591,7 +2600,7 @@
                 }
             } catch (e) {
                 assetDrawerAuthed = false;
-                if (msg) msg.textContent = `❌ 验证失败：${e}`;
+                if (msg) msg.textContent = `❌ Verification failed：${e}`;
             }
         }
 
@@ -3259,7 +3268,7 @@
             clearAssetThumbTimers();
 
             if (rows.length === 0) {
-                list.innerHTML = '<div class="asset-sub" style="padding:8px">暂无资产（可点“刷新”重试）</div>';
+                list.innerHTML = '<div class="asset-sub" style="padding:8px">No assets found (try refreshing)</div>';
                 return;
             }
 
@@ -3511,7 +3520,7 @@
             const path = (selectedAssetInfo && selectedAssetInfo.path) ? selectedAssetInfo.path : '';
             const fi = document.getElementById('asset-upload-file');
             const out = document.getElementById('asset-upload-result');
-            if (!path) { out.textContent = '请先选中一个资产路径'; return false; }
+            if (!path) { out.textContent = 'Please select an asset path first'; return false; }
             if (!fi.files.length) { return true; } // 允许仅改坐标
             const file = fi.files[0];
             const fd = new FormData();
@@ -3537,19 +3546,19 @@
                 fd.append('pixel_art', '1');
             }
 
-            out.textContent = '⏳ 正在上传并替换，请稍候...';
+            out.textContent = '⏳ Uploading and replacing, please wait...';
             const res = await fetch('/assets/upload', { method: 'POST', body: fd });
             const data = await res.json();
             if (!data.ok) {
-                out.textContent = `❌ 更新失败：${data.msg || res.status}`;
+                out.textContent = `❌ Update failed：${data.msg || res.status}`;
                 return false;
             }
 
             if (data.converted) {
                 const toType = data.converted.to || 'spritesheet';
-                out.textContent = `✅ 已上传（动图→${toType}）：${data.path} ｜ ${data.converted.frames}帧 ${data.converted.frame_w}x${data.converted.frame_h}`;
+                out.textContent = `✅ Uploaded (anim→${toType}）：${data.path} ｜ ${data.converted.frames}f ${data.converted.frame_w}x${data.converted.frame_h}`;
             } else {
-                out.textContent = `✅ 已上传：${data.path}`;
+                out.textContent = `✅ Uploaded：${data.path}`;
             }
             return true;
         }
@@ -3564,8 +3573,8 @@
             if (!okUpload) return;
 
             if (out) {
-                if (hasFile) out.textContent += ' ｜ ✅ 已上传并刷新';
-                else out.textContent = '✅ 已确认并刷新';
+                if (hasFile) out.textContent += ' ｜ ✅ Uploaded and refreshed';
+                else out.textContent = '✅ Confirmed and refreshed';
             }
 
             // 刷新前关闭侧边栏，行为与地图替换一致
@@ -3779,7 +3788,7 @@ function toggleBrokerPanel() {
             const msg = document.getElementById('gemini-config-msg');
             const key = (input?.value || '').trim();
             if (!key) {
-                if (msg) msg.textContent = '请输入有效 API Key';
+                if (msg) msg.textContent = 'Please enter a valid API Key';
                 return;
             }
             try {
@@ -3790,15 +3799,15 @@ function toggleBrokerPanel() {
                 });
                 const data = await res.json();
                 if (!data.ok) {
-                    if (msg) msg.textContent = `保存失败：${data.msg || res.status}`;
+                    if (msg) msg.textContent = `Save failed：${data.msg || res.status}`;
                     return;
                 }
-                if (msg) msg.textContent = '✅ 已保存，可重新点击搬家/中介';
+                if (msg) msg.textContent = '✅ Saved. You can now use New Home / Broker.';
                 const box = document.getElementById('asset-gemini-config');
                 if (box) box.style.display = 'none';
                 await ensureGeminiConfigLoaded();
             } catch (e) {
-                if (msg) msg.textContent = `保存失败：${e}`;
+                if (msg) msg.textContent = `Save failed：${e}`;
             }
         }
 
@@ -3841,13 +3850,13 @@ function toggleBrokerPanel() {
                         const box = document.getElementById('asset-gemini-config');
                         if (box) box.style.display = 'block';
                     } else if (data.code === 'API_KEY_REVOKED_OR_LEAKED') {
-                        out.textContent = '❌ 当前 API Key 已失效/疑似泄露，请更换新 Key 后重试';
+                        out.textContent = '❌ Current API Key is invalid/possibly leaked. Please replace and retry.';
                         const box = document.getElementById('asset-gemini-config');
                         if (box) box.style.display = 'block';
                     } else if (data.code === 'MODEL_NOT_AVAILABLE') {
-                        out.textContent = '❌ 当前模型在此通道不可用，请切换可用模型后重试';
+                        out.textContent = '❌ Current model is not available on this channel. Switch to an available model.';
                     } else {
-                        out.textContent = `❌ 生成失败：${data.msg || res.status}`;
+                        out.textContent = `❌ Generation failed：${data.msg || res.status}`;
                     }
                     return;
                 }
@@ -3857,10 +3866,10 @@ function toggleBrokerPanel() {
                 if (ok) {
                     markMoveSuccess(out, brokerBtn);
                 } else {
-                    out.textContent = '✅ 已生成并替换底图（局部刷新失败，可手动刷新页面）';
+                    out.textContent = '✅ Generated and replaced background（partial refresh failed, try manual page refresh）';
                 }
             } catch (e) {
-                out.textContent = `❌ 生成失败：${e}`;
+                out.textContent = `❌ Generation failed：${e}`;
             } finally {
                 hideRoomLoadingOverlay();
             }
@@ -3873,7 +3882,7 @@ function toggleBrokerPanel() {
             const out = document.getElementById('asset-move-result') || document.getElementById('asset-upload-result');
             // 点击即刻显示遮罩，先于任何网络调用
             showRoomLoadingOverlay();
-            out.textContent = '🧳 正在打包行李，请稍后（约30~60秒）';
+            out.textContent = '🧳 正在打包行李，请稍后（约30~60s)';
             try {
                 const res = await fetch('/assets/generate-rpg-background', {
                     method: 'POST',
@@ -3887,26 +3896,26 @@ function toggleBrokerPanel() {
                         const box = document.getElementById('asset-gemini-config');
                         if (box) box.style.display = 'block';
                     } else if (data.code === 'API_KEY_REVOKED_OR_LEAKED') {
-                        out.textContent = '❌ 当前 API Key 已失效/疑似泄露，请更换新 Key 后重试';
+                        out.textContent = '❌ Current API Key is invalid/possibly leaked. Please replace and retry.';
                         const box = document.getElementById('asset-gemini-config');
                         if (box) box.style.display = 'block';
                     } else if (data.code === 'MODEL_NOT_AVAILABLE') {
-                        out.textContent = '❌ 当前模型在此通道不可用，请切换可用模型后重试';
+                        out.textContent = '❌ Current model is not available on this channel. Switch to an available model.';
                     } else {
-                        out.textContent = `❌ 生成失败：${data.msg || res.status}`;
+                        out.textContent = `❌ Generation failed：${data.msg || res.status}`;
                     }
                     return;
                 }
-                out.textContent = '✅ 已生成并替换底图，正在刷新房间...';
+                out.textContent = '✅ Generated and replaced background, refreshing room...';
                 const ok = await refreshOfficeBackgroundOnly();
                 await notifyMainWindowAssetRefresh('office_bg', 'office_bg_small.webp');
                 if (ok) {
                     markMoveSuccess(out, moveBtn);
                 } else {
-                    out.textContent = '✅ 已生成并替换底图（局部刷新失败，可手动刷新页面）';
+                    out.textContent = '✅ Generated and replaced background（partial refresh failed, try manual page refresh）';
                 }
             } catch (e) {
-                out.textContent = `❌ 生成失败：${e}`;
+                out.textContent = `❌ Generation failed：${e}`;
             } finally {
                 hideRoomLoadingOverlay();
             }
@@ -3917,33 +3926,33 @@ function toggleBrokerPanel() {
             flashButtonActive(homeBtn);
             const out = document.getElementById('asset-move-result') || document.getElementById('asset-upload-result');
 
-            const confirmMsg = '⚠️ 回老家会覆盖当前自定义房间背景（可从 bg-history 恢复历史图）。\n确定继续吗？';
+            const confirmMsg = '⚠️ Going home will overwrite the current custom background（recoverable from bg-history）。\nContinue?';
             if (!window.confirm(confirmMsg)) {
-                out.textContent = '已取消回老家';
+                out.textContent = 'Go home cancelled';
                 return;
             }
 
             setWorkingStatus(t('statusRestoreHome'));
             // 点击即刻显示遮罩，先于任何网络调用
             showRoomLoadingOverlay();
-            out.textContent = '🏡 正在回老家（恢复初始底图）...';
+            out.textContent = '🏡 Going home（恢复初始底图）...';
             try {
                 const res = await fetch('/assets/restore-reference-background', { method: 'POST' });
                 const data = await res.json();
                 if (!data.ok) {
-                    out.textContent = `❌ 恢复失败：${data.msg || res.status}`;
+                    out.textContent = `❌ Restore failed：${data.msg || res.status}`;
                     return;
                 }
-                out.textContent = '✅ 已恢复初始底图';
+                out.textContent = '✅ Default background restored';
                 const ok = await refreshOfficeBackgroundOnly();
                 await notifyMainWindowAssetRefresh('office_bg', 'office_bg_small.webp');
                 if (ok) {
                     markMoveSuccess(out, homeBtn);
                 } else {
-                    out.textContent = '✅ 已恢复初始底图（局部刷新失败，可手动刷新页面）';
+                    out.textContent = '✅ Default background restored（partial refresh failed, try manual page refresh）';
                 }
             } catch (e) {
-                out.textContent = `❌ 恢复失败：${e}`;
+                out.textContent = `❌ Restore failed：${e}`;
             } finally {
                 hideRoomLoadingOverlay();
             }
@@ -3954,32 +3963,32 @@ function toggleBrokerPanel() {
             flashButtonActive(btn);
             const out = document.getElementById('asset-move-result') || document.getElementById('asset-upload-result');
 
-            const confirmMsg = '⚠️ 将回退到最近一次生成的房间背景，确定继续吗？';
+            const confirmMsg = '⚠️ 将回退到最近一次生成的房间背景，Continue?';
             if (!window.confirm(confirmMsg)) {
-                out.textContent = '已取消回退';
+                out.textContent = 'Restore cancelled';
                 return;
             }
 
             setWorkingStatus(t('statusRestoreLastBg'));
             showRoomLoadingOverlay();
-            out.textContent = '↩️ 正在回退到最近一次生成底图...';
+            out.textContent = '↩️ Restoring last generated background...';
             try {
                 const res = await fetch('/assets/restore-last-generated-background', { method: 'POST' });
                 const data = await res.json();
                 if (!data.ok) {
-                    out.textContent = `❌ 回退失败：${data.msg || res.status}`;
+                    out.textContent = `❌ Restore failed：${data.msg || res.status}`;
                     return;
                 }
                 const ok = await refreshOfficeBackgroundOnly();
                 await notifyMainWindowAssetRefresh('office_bg', 'office_bg_small.webp');
                 if (ok) {
-                    out.textContent = '✅ 已回退到上一次背景';
+                    out.textContent = '✅ Restored last background';
                 } else {
-                    out.textContent = '✅ 已回退到上一次背景（局部刷新失败，可手动刷新页面）';
+                    out.textContent = '✅ Restored last background（partial refresh failed, try manual page refresh）';
                 }
-                try { setState('idle', '已回退到上一次背景'); } catch (e) {}
+                try { setState('idle', 'Restored last background'); } catch (e) {}
             } catch (e) {
-                out.textContent = `❌ 回退失败：${e}`;
+                out.textContent = `❌ Restore failed：${e}`;
             } finally {
                 hideRoomLoadingOverlay();
             }
@@ -3991,7 +4000,7 @@ function toggleBrokerPanel() {
             if (!ct.includes('application/json')) {
                 const txt = await res.text();
                 const brief = (txt || '').replace(/\s+/g, ' ').slice(0, 120);
-                throw new Error(`接口未返回 JSON（${res.status}）: ${brief || 'empty response'}`);
+                throw new Error(`API did not return JSON (${res.status}）: ${brief || 'empty response'}`);
             }
             return await res.json();
         }
@@ -4011,7 +4020,7 @@ function toggleBrokerPanel() {
                     }
                 } catch (e) {
                     const out = document.getElementById('asset-move-result') || document.getElementById('asset-upload-result');
-                    if (out) out.textContent = `❌ 收藏列表加载失败：${e.message || e}`;
+                    if (out) out.textContent = `❌ 收藏列表Failed to load：${e.message || e}`;
                 }
             }
 
@@ -4039,13 +4048,13 @@ function toggleBrokerPanel() {
             try {
                 const data = await fetchJsonSafe('/assets/home-favorites/save-current', { method: 'POST' });
                 if (!data.ok) {
-                    out.textContent = `❌ 收藏失败：${data.msg || 'unknown error'}`;
+                    out.textContent = `❌ Save failed：${data.msg || 'unknown error'}`;
                     return;
                 }
                 out.textContent = t('homeFavSaved');
                 await renderHomeFavorites(true);
             } catch (e) {
-                out.textContent = `❌ 收藏失败：${e.message || e}`;
+                out.textContent = `❌ Save failed：${e.message || e}`;
             }
         }
 
@@ -4061,15 +4070,15 @@ function toggleBrokerPanel() {
                     body: JSON.stringify({ id })
                 });
                 if (!data.ok) {
-                    out.textContent = `❌ 替换失败：${data.msg || 'unknown error'}`;
+                    out.textContent = `❌ Replace failed：${data.msg || 'unknown error'}`;
                     return;
                 }
                 const ok = await refreshOfficeBackgroundOnly();
                 await notifyMainWindowAssetRefresh('office_bg', 'office_bg_small.webp');
-                out.textContent = ok ? t('homeFavApplied') : `${t('homeFavApplied')}（局部刷新失败，可手动刷新页面）`;
-                try { setState('idle', '已应用收藏地图'); } catch (e) {}
+                out.textContent = ok ? t('homeFavApplied') : `${t('homeFavApplied')}（partial refresh failed, try manual page refresh）`;
+                try { setState('idle', 'Applied saved home'); } catch (e) {}
             } catch (e) {
-                out.textContent = `❌ 替换失败：${e.message || e}`;
+                out.textContent = `❌ Replace failed：${e.message || e}`;
             } finally {
                 hideRoomLoadingOverlay();
             }
@@ -4079,10 +4088,10 @@ function toggleBrokerPanel() {
             const out = document.getElementById('asset-upload-result');
             const path = selectedAssetInfo && selectedAssetInfo.path;
             if (!path) {
-                if (out) out.textContent = '请先选择一个资产';
+                if (out) out.textContent = 'Please select an asset first';
                 return;
             }
-            if (!window.confirm(`⚠️ 确定将 ${path} 重置为默认资产吗？`)) return;
+            if (!window.confirm(`⚠️ Reset ${path} to default asset?`)) return;
             try {
                 const res = await fetch('/assets/restore-default', {
                     method: 'POST',
@@ -4091,14 +4100,14 @@ function toggleBrokerPanel() {
                 });
                 const data = await res.json();
                 if (!data.ok) {
-                    if (out) out.textContent = `❌ 重置失败：${data.msg || res.status}`;
+                    if (out) out.textContent = `❌ Reset failed：${data.msg || res.status}`;
                     return;
                 }
                 await refreshSceneObjectByAssetPath(path);
                 await notifyMainWindowAssetRefresh('asset_path', path);
-                if (out) out.textContent = `✅ 已重置为默认资产：${path}`;
+                if (out) out.textContent = `✅ Reset to default：${path}`;
             } catch (e) {
-                if (out) out.textContent = `❌ 重置失败：${e}`;
+                if (out) out.textContent = `❌ Reset failed：${e}`;
             }
         }
 
@@ -4106,10 +4115,10 @@ function toggleBrokerPanel() {
             const out = document.getElementById('asset-upload-result');
             const path = selectedAssetInfo && selectedAssetInfo.path;
             if (!path) {
-                if (out) out.textContent = '请先选择一个资产';
+                if (out) out.textContent = 'Please select an asset first';
                 return;
             }
-            if (!window.confirm(`⚠️ 确定将 ${path} 回退到上一版吗？`)) return;
+            if (!window.confirm(`⚠️ Reset ${path} to previous version?`)) return;
             try {
                 const res = await fetch('/assets/restore-prev', {
                     method: 'POST',
@@ -4118,14 +4127,14 @@ function toggleBrokerPanel() {
                 });
                 const data = await res.json();
                 if (!data.ok) {
-                    if (out) out.textContent = `❌ 回退失败：${data.msg || res.status}`;
+                    if (out) out.textContent = `❌ Restore failed：${data.msg || res.status}`;
                     return;
                 }
                 await refreshSceneObjectByAssetPath(path);
                 await notifyMainWindowAssetRefresh('asset_path', path);
-                if (out) out.textContent = `✅ 已回退到上一版：${path}`;
+                if (out) out.textContent = `✅ Restored to previous version：${path}`;
             } catch (e) {
-                if (out) out.textContent = `❌ 回退失败：${e}`;
+                if (out) out.textContent = `❌ Restore failed：${e}`;
             }
         }
 
@@ -4228,7 +4237,7 @@ function toggleBrokerPanel() {
             }
         }
 
-        // Guest Agent 离开房间
+        // Guest Agent Leave Room
         function removeGuestSpriteByName(name) {
             const target = guestAgents.find(a => (a.name || '') === name);
             if (target && guestSprites[target.agentId]) {
@@ -4260,20 +4269,20 @@ function toggleBrokerPanel() {
                         delete guestBubbles[agentId];
                     }
                     fetchGuestAgents();
-                    alert((name || agentId) + ' 已离开房间');
+                    alert((name || agentId) + ' has left the room');
                 } else {
                     // demo agent 没在后端也允许本地隐藏
-                    if (DEMO_MODE && (name === '尼卡' || name === '水星')) {
+                    if (DEMO_MODE && (name === 'Nika' || name === 'Mercury')) {
                         hiddenDemoNames.add(name);
                         removeGuestSpriteByName(name);
                         renderGuestAgentList();
-                        alert(name + ' 已离开房间（demo）');
+                        alert(name + ' has left the room（demo）');
                         return;
                     }
-                    alert('离开失败：' + (data.msg || '未知错误'));
+                    alert('Leave failed: ' + (data.msg || 'unknown error'));
                 }
             }).catch(error => {
-                alert('请求失败：' + error);
+                alert('Request failed: ' + error);
             });
         }
 
@@ -4285,12 +4294,12 @@ function toggleBrokerPanel() {
             }).then(response => response.json()).then(data => {
                 if (data.ok) {
                     fetchGuestAgents();
-                    alert('已批准该访客接入');
+                    alert('Visitor approved');
                 } else {
-                    alert('批准失败：' + (data.msg || '未知错误'));
+                    alert('Approve failed: ' + (data.msg || 'unknown error'));
                 }
             }).catch(error => {
-                alert('请求失败：' + error);
+                alert('Request failed: ' + error);
             });
         }
 
@@ -4302,12 +4311,12 @@ function toggleBrokerPanel() {
             }).then(response => response.json()).then(data => {
                 if (data.ok) {
                     fetchGuestAgents();
-                    alert('已拒绝该访客');
+                    alert('Visitor rejected');
                 } else {
-                    alert('拒绝失败：' + (data.msg || '未知错误'));
+                    alert('Reject failed: ' + (data.msg || 'unknown error'));
                 }
             }).catch(error => {
-                alert('请求失败：' + error);
+                alert('Request failed: ' + error);
             });
         }
 
@@ -4315,8 +4324,8 @@ function toggleBrokerPanel() {
             if (!DEMO_MODE) return;
             if (!Array.isArray(window.__demoVisitors) || window.__demoVisitors.length === 0) {
                 window.__demoVisitors = [
-                    { agentId: 'demo_nika', name: '尼卡', authStatus: 'approved', state: 'writing', bubbleText: '我在工作中', isDemo: true, updated_at: new Date().toISOString() },
-                    { agentId: 'demo_mercury', name: '水星', authStatus: 'approved', state: 'idle', bubbleText: '我去休息区躺一下', isDemo: true, updated_at: new Date().toISOString() }
+                    { agentId: 'demo_nika', name: 'Nika', authStatus: 'approved', state: 'writing', bubbleText: 'Working on it', isDemo: true, updated_at: new Date().toISOString() },
+                    { agentId: 'demo_mercury', name: 'Mercury', authStatus: 'approved', state: 'idle', bubbleText: 'Taking a break', isDemo: true, updated_at: new Date().toISOString() }
                 ];
             }
         }
@@ -4336,25 +4345,25 @@ function toggleBrokerPanel() {
 
             const visitors = getMergedVisitors();
             if (visitors.length === 0) {
-                list.innerHTML = '<div style="color:#9ca3af;font-size:12px;text-align:center;padding:20px 0;">暂无访客</div>';
+                list.innerHTML = '<div style="color:#9ca3af;font-size:12px;text-align:center;padding:20px 0;">No visitors</div>';
                 return;
             }
 
             list.innerHTML = visitors.map(agent => {
-                const name = agent.name || '未命名访客';
+                const name = agent.name || 'Unnamed visitor';
                 const authStatus = agent.authStatus || 'pending';
                 const state = agent.state || 'idle';
                 const statusMap = {
-                    approved: '已授权',
-                    pending: '待授权',
-                    rejected: '已拒绝',
-                    offline: '离线'
+                    approved: 'Approved',
+                    pending: 'Pending',
+                    rejected: 'Rejected',
+                    offline: 'Offline'
                 };
                 const stateMap = {
                     idle: '待命',
                     writing: '工作',
-                    researching: '调研',
-                    executing: '执行',
+                    researching: 'Researching',
+                    executing: 'Executing',
                     syncing: '同步',
                     error: '报警'
                 };
@@ -4363,7 +4372,7 @@ function toggleBrokerPanel() {
                 const stateText = stateMap[state] || state;
                 const subtitle = `${statusText} · ${stateText}`;
 
-                const pendingActions = `<button onclick="alert('交换 skill 功能开发中')">交换skill</button><button class="leave-btn" onclick="leaveGuestAgent('${agent.agentId}','${name}')">离开房间</button>`;
+                const pendingActions = `<button onclick="alert('Swap skill feature in development')">Swap Skill</button><button class="leave-btn" onclick="leaveGuestAgent('${agent.agentId}','${name}')">Leave Room</button>`;
 
                 return `
                   <div class="guest-agent-item" data-name="${name}">
@@ -4433,7 +4442,7 @@ function toggleBrokerPanel() {
                 const id = agent.agentId;
                 seenIds.add(id);
 
-                const isDemo = !!agent.isDemo || (DEMO_MODE && (id === 'demo_nika' || id === 'demo_mercury' || agent.name === '尼卡' || agent.name === '水星'));
+                const isDemo = !!agent.isDemo || (DEMO_MODE && (id === 'demo_nika' || id === 'demo_mercury' || agent.name === 'Nika' || agent.name === 'Mercury'));
                 const area = agent.area || (agent.state === 'error' ? 'error' : (agent.state === 'idle' ? 'breakroom' : 'writing'));
 
                 const idx = area === 'breakroom' ? idxBreak++ : area === 'error' ? idxError++ : idxWrite++;
@@ -4444,8 +4453,8 @@ function toggleBrokerPanel() {
                 if (!guestSprites[id]) {
                     // 优先用图标：demo visitor 有专门映射
                     let sprite;
-                    const isDemoNika = DEMO_MODE && (agent.agentId === 'demo_nika' || agent.name === '尼卡');
-                    const isDemoMercury = DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星');
+                    const isDemoNika = DEMO_MODE && (agent.agentId === 'demo_nika' || agent.name === 'Nika');
+                    const isDemoMercury = DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === 'Mercury');
                     
                     if (isDemoNika || isDemoMercury) {
                         // 统一使用动态像素角色，避免依赖已删除的 demo 静态图
@@ -4489,15 +4498,15 @@ function toggleBrokerPanel() {
                         }
                     }
                     sprite.setDepth(2600);
-                    if (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星')) {
+                    if (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === 'Mercury')) {
                         sprite.y = sprite.y + 10;
                     }
 
                     // demo 水星下移 10px（仅 demo_mercury）
-                    const yOffset = (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星')) ? 10 : 0;
+                    const yOffset = (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === 'Mercury')) ? 10 : 0;
 
                     const nameTextY = isDemo ? ((p.y + yOffset) - 80) : ((p.y + yOffset) - 120);
-                    const nameText = game.add.text(p.x, nameTextY, agent.name || '访客', {
+                    const nameText = game.add.text(p.x, nameTextY, agent.name || 'Guest', {
                         fontFamily: 'ArkPixel, monospace',
                         fontSize: isDemo ? '16px' : '15px',
                         fill: '#ffffff',
@@ -4509,7 +4518,7 @@ function toggleBrokerPanel() {
                     guestSprites[id] = { sprite, nameText };
                 } else {
                     const g = guestSprites[id];
-                    const yOffset = (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === '水星')) ? 10 : 0;
+                    const yOffset = (DEMO_MODE && (agent.agentId === 'demo_mercury' || agent.name === 'Mercury')) ? 10 : 0;
 
                     // demo：平滑移动（避免闪现）；非 demo：保持稳定位置（避免轮询抖动）
                     if (isDemo) {
@@ -4546,7 +4555,7 @@ function toggleBrokerPanel() {
                         g.nameText.y = (p.y + yOffset) - 120;
                     }
 
-                    g.nameText.setText(agent.name || '访客');
+                    g.nameText.setText(agent.name || 'Guest');
                 }
             });
 
@@ -4584,9 +4593,9 @@ function toggleBrokerPanel() {
 
             const statusThoughtsMap = {
                 idle: ['我在休息区待命', '先放松一下，等下一步任务', '我在休息充电中'],
-                writing: ['我在工作区处理任务', '正在整理文档与执行中', '工作区专注推进中'],
-                researching: ['我在调研模式，搜集信息', '正在查资料和验证线索', '研究中，稍后同步结论'],
-                executing: ['执行中，正在跑流程', '我在工作区推进任务', '正在把计划落地执行'],
+                writing: ['我在工作区处理任务', '正在整理文档与Executing中', '工作区专注推进中'],
+                researching: ['我在Researching模式，搜集信息', '正在查资料和验证线索', '研究中，稍后同步结论'],
+                executing: ['Executing中，正在跑流程', '我在工作区推进任务', '正在把计划落地Executing'],
                 syncing: ['同步中，马上更新状态', '正在同步进度到系统', '数据同步中请稍候'],
                 error: ['我在 bug 区排查问题', '检测到异常，正在修复', '报警中，先定位再处理']
             };
@@ -4636,10 +4645,10 @@ function toggleBrokerPanel() {
             const states = ['idle', 'writing', 'researching', 'executing', 'syncing', 'error'];
             const bubbleTextMapByLang = {
                 zh: {
-                idle: '我去休息区躺一下',
-                writing: '我在工作中',
-                researching: '我在调研中',
-                executing: '我在执行任务',
+                idle: 'Taking a break',
+                writing: 'Working on it',
+                researching: '我在Researching中',
+                executing: '我在Executing任务',
                 syncing: '我在同步状态',
                 error: '出错了！我去报警区'
                 },
@@ -4730,7 +4739,7 @@ function toggleBrokerPanel() {
                         }
                     });
                 }
-            } catch (e) { console.error('强制冒泡失败:', e); }
+            } catch (e) { console.error('Force bubble failed:', e); }
         }
 
         function fetchGuestAgents() {
@@ -4788,7 +4797,7 @@ function toggleBrokerPanel() {
                     renderGuestAgentsInScene();
                 })
                 .catch(error => {
-                    console.error('拉取访客列表失败:', error);
+                    console.error('Failed to fetch guest list:', error);
                     // 即使拉取失败，demo 也要能渲染
                     if (DEMO_MODE) {
                         renderGuestAgentList();
@@ -4824,7 +4833,7 @@ function toggleBrokerPanel() {
                     if (flowerItem && Number(flowerItem.width) > 0 && Number(flowerItem.height) > 0) {
                         const w = Number(flowerItem.width);
                         const h = Number(flowerItem.height);
-                        // 固定规则：花朵单帧 128x128，4x4
+                        // 固定规则：花朵单f 128x128，4x4
                         FLOWERS_FRAME_W = 128;
                         FLOWERS_FRAME_H = 128;
                         FLOWERS_FRAME_COLS = 4;
@@ -5173,7 +5182,7 @@ function toggleBrokerPanel() {
                 coordsToggle.style.background = showCoords ? '#e94560' : '#333';
             });
 
-            // 允许手机端“拖动/滑动”来移动视野（本质：移动 Phaser Camera）
+            // 允许手机端“拖动/滑动”来Pan View（本质：移动 Phaser Camera）
             // iPhone 等触屏设备默认开启；桌面端默认关闭（可手动开）。
             const panToggle = document.getElementById('pan-toggle');
             const isTouchDevice = IS_TOUCH_DEVICE;
@@ -5252,7 +5261,7 @@ function toggleBrokerPanel() {
                 }
                 game.input.setDefaultCursor(on ? 'grab' : 'default');
                 if (isTouchDevice && statusText) {
-                    const info = on ? '视野拖动已开启（可左右拖动画布）' : '视野拖动已关闭（点击左上角“移动视野”可开启）';
+                    const info = on ? 'Pan enabled (drag canvas left/right)' : '视野拖动已关闭（点击左上角“Pan View”可开启）';
                     statusText.textContent = `[${getStateLabelByState(currentState)}] ${info}`;
                 }
             }
@@ -5261,7 +5270,7 @@ function toggleBrokerPanel() {
                 panToggle.addEventListener('click', () => setPanEnabled(!panEnabled));
             }
 
-            // 手机端默认关闭拖动画面：由左上角“移动视野”开关显式开启
+            // 手机端默认关闭拖动画面：由左上角“Pan View”开关显式开启
             if (isTouchDevice) {
                 setPanEnabled(false);
             }
@@ -5575,13 +5584,13 @@ function toggleBrokerPanel() {
                         }
                     } catch (err) {
                         console.error('fetchStatus apply error', err);
-                        typewriterTarget = '状态更新异常，正在恢复...';
+                        typewriterTarget = 'Status update error, recovering...';
                         typewriterText = '';
                         typewriterIndex = 0;
                     }
                 })
                 .catch(error => {
-                    typewriterTarget = '连接失败，正在重试...';
+                    typewriterTarget = 'Connection failed, retrying...';
                     typewriterText = '';
                     typewriterIndex = 0;
                 });

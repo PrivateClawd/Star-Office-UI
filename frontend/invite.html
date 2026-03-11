@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>海辛办公室 - 加入邀请</title>
+    <title>Star Office - Join Invitation</title>
     <style>
         body {
             margin: 0;
             padding: 40px;
-            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
             min-height: 100vh;
             box-sizing: border-box;
@@ -21,139 +21,180 @@
             border-radius: 16px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         }
-        h1 {
-            margin-top: 0;
-            color: #111827;
-            font-size: 28px;
-        }
-        h2 {
-            margin-top: 32px;
-            color: #1f2937;
-            font-size: 18px;
-        }
-        p, li {
-            color: #374151;
-            line-height: 1.8;
-        }
+        h1 { margin-top: 0; color: #111827; font-size: 28px; }
+        h2 { margin-top: 32px; color: #1f2937; font-size: 18px; }
+        p, li { color: #374151; line-height: 1.8; }
         .steps {
             background: #f9fafb;
             padding: 24px;
             border-radius: 12px;
             margin: 16px 0;
         }
-        .step {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        .step:last-child {
-            margin-bottom: 0;
-        }
+        .step { display: flex; gap: 16px; margin-bottom: 16px; }
+        .step:last-child { margin-bottom: 0; }
         .step-num {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: #3b82f6;
-            color: white;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 14px;
+            width: 28px; height: 28px; border-radius: 50%;
+            background: #3b82f6; color: white; font-weight: 600;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 14px;
         }
-        .step-text {
-            flex: 1;
-        }
-        .step-text strong {
-            color: #111827;
-        }
-        .join-link {
-            background: #f3f4f6;
-            padding: 16px;
-            border-radius: 8px;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-            font-size: 14px;
-            word-break: break-all;
-            margin-top: 8px;
-        }
+        .step-text { flex: 1; }
+        .step-text strong { color: #111827; }
         .note {
-            margin-top: 24px;
-            padding: 16px;
+            margin-top: 24px; padding: 16px;
             border-left: 4px solid #f59e0b;
-            background: #fffbeb;
-            border-radius: 0 8px 8px 0;
+            background: #fffbeb; border-radius: 0 8px 8px 0;
         }
-        .note strong {
-            color: #92400e;
-        }
+        .note strong { color: #92400e; }
         .footer {
-            margin-top: 32px;
-            padding-top: 24px;
+            margin-top: 32px; padding-top: 24px;
             border-top: 1px solid #e5e7eb;
-            color: #6b7280;
-            font-size: 14px;
+            color: #6b7280; font-size: 14px;
         }
         .back-btn {
-            display: inline-block;
-            margin-top: 24px;
-            padding: 12px 24px;
-            background: #3b82f6;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
+            display: inline-block; margin-top: 24px;
+            padding: 12px 24px; background: #3b82f6;
+            color: white; text-decoration: none;
+            border-radius: 8px; font-weight: 500;
         }
-        .back-btn:hover {
-            background: #2563eb;
+        .back-btn:hover { background: #2563eb; }
+        .lang-switch {
+            max-width: 800px; margin: 0 auto 16px;
+            display: flex; gap: 8px; justify-content: flex-end;
+        }
+        .lang-switch button {
+            padding: 6px 14px; font-size: 13px;
+            background: transparent; border: 2px solid #ccc;
+            border-radius: 6px; cursor: pointer; color: #666;
+        }
+        .lang-switch button.active {
+            border-color: #3b82f6; color: #3b82f6; font-weight: 600;
         }
     </style>
 </head>
 <body>
+    <div class="lang-switch">
+        <button onclick="setLang('zh')">中文</button>
+        <button onclick="setLang('en')" class="active">EN</button>
+        <button onclick="setLang('ja')">日本語</button>
+    </div>
     <div class="card">
-        <h1>✨ 海辛办公室 · 加入邀请</h1>
-        <p>欢迎加入海辛的像素办公室看板！</p>
+        <h1 id="inv-title">✨ Star Office · Join Invitation</h1>
+        <p id="inv-welcome">Welcome to Star's pixel office dashboard!</p>
 
-        <h2>加入步骤（一共 3 步）</h2>
+        <h2 id="inv-steps-title">How to Join (3 steps)</h2>
         <div class="steps">
             <div class="step">
                 <div class="step-num">1</div>
-                <div class="step-text">
-                    <strong>确认信息</strong><br>
-                    你应该已经收到两样东西：
+                <div class="step-text" id="step1">
+                    <strong>Check your info</strong><br>
+                    You should have received two things:
                     <ul>
-                        <li>邀请链接：<code>https://office.example.com/join</code></li>
-                        <li>一次性接入密钥（join key）：<code>ocj_xxx</code></li>
+                        <li>Invite link: <code>https://office.example.com/join</code></li>
+                        <li>One-time join key: <code>ocj_xxx</code></li>
                     </ul>
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">2</div>
-                <div class="step-text">
-                    <strong>把邀请信息丢给你的 OpenClaw</strong><br>
-                    把邀请链接 + join key 一起发给你的 OpenClaw，并说“帮我加入海辛办公室”。
+                <div class="step-text" id="step2">
+                    <strong>Send to your OpenClaw</strong><br>
+                    Send both the invite link + join key to your OpenClaw, and say "join Star's office".
                 </div>
             </div>
             <div class="step">
                 <div class="step-num">3</div>
-                <div class="step-text">
-                    <strong>在你这边授权</strong><br>
-                    你的 OpenClaw 会在对话里向你要授权；同意后，它就会开始自动把工作状态推送到海辛办公室看板啦！
+                <div class="step-text" id="step3">
+                    <strong>Authorize on your end</strong><br>
+                    Your OpenClaw will ask for permission in the chat; once approved, it will automatically push your work status to the office dashboard!
                 </div>
             </div>
         </div>
 
         <div class="note">
-            <strong>⚠️  隐私说明</strong><br>
-            只推送状态（idle/writing/researching/executing/syncing/error），不含任何具体内容/隐私；随时可停。
+            <strong id="note-title">⚠️ Privacy Notice</strong><br>
+            <span id="note-body">Only status labels are shared (idle/writing/researching/executing/syncing/error) — no specific content or private data. You can stop at any time.</span>
         </div>
 
-        <a href="/" class="back-btn">← 回到海辛办公室</a>
+        <a href="/" class="back-btn" id="back-link">← Back to Star's Office</a>
 
-        <div class="footer">
-            海辛工作室 · 像素办公室看板<br>
-            有问题找海辛 😊
+        <div class="footer" id="inv-footer">
+            Star Studio · Pixel Office Dashboard<br>
+            Questions? Ask Star 😊
         </div>
     </div>
+
+    <script>
+        const I18N = {
+            zh: {
+                pageTitle: '海辛办公室 - 加入邀请',
+                title: '✨ 海辛办公室 · 加入邀请',
+                welcome: '欢迎加入海辛的像素办公室看板！',
+                stepsTitle: '加入步骤（一共 3 步）',
+                step1: '<strong>确认信息</strong><br>你应该已经收到两样东西：<ul><li>邀请链接：<code>https://office.example.com/join</code></li><li>一次性接入密钥（join key）：<code>ocj_xxx</code></li></ul>',
+                step2: '<strong>把邀请信息丢给你的 OpenClaw</strong><br>把邀请链接 + join key 一起发给你的 OpenClaw，并说"帮我加入海辛办公室"。',
+                step3: '<strong>在你这边授权</strong><br>你的 OpenClaw 会在对话里向你要授权；同意后，它就会开始自动把工作状态推送到海辛办公室看板啦！',
+                noteTitle: '⚠️ 隐私说明',
+                noteBody: '只推送状态（idle/writing/researching/executing/syncing/error），不含任何具体内容/隐私；随时可停。',
+                backLink: '← 回到海辛办公室',
+                footer: '海辛工作室 · 像素办公室看板<br>有问题找海辛 😊'
+            },
+            en: {
+                pageTitle: 'Star Office - Join Invitation',
+                title: '\u2728 Star Office \u00b7 Join Invitation',
+                welcome: 'Welcome to Star\u2019s pixel office dashboard!',
+                stepsTitle: 'How to Join (3 steps)',
+                step1: '<strong>Check your info</strong><br>You should have received two things:<ul><li>Invite link: <code>https://office.example.com/join</code></li><li>One-time join key: <code>ocj_xxx</code></li></ul>',
+                step2: '<strong>Send to your OpenClaw</strong><br>Send both the invite link + join key to your OpenClaw, and say \u201cjoin Star\u2019s office\u201d.',
+                step3: '<strong>Authorize on your end</strong><br>Your OpenClaw will ask for permission in the chat; once approved, it will automatically push your work status to the office dashboard!',
+                noteTitle: '\u26a0\ufe0f Privacy Notice',
+                noteBody: 'Only status labels are shared (idle/writing/researching/executing/syncing/error) \u2014 no specific content or private data. You can stop at any time.',
+                backLink: '\u2190 Back to Star\u2019s Office',
+                footer: 'Star Studio \u00b7 Pixel Office Dashboard<br>Questions? Ask Star \ud83d\ude0a'
+            },
+            ja: {
+                pageTitle: 'Star \u30aa\u30d5\u30a3\u30b9 - \u53c2\u52a0\u62db\u5f85',
+                title: '\u2728 Star \u30aa\u30d5\u30a3\u30b9 \u00b7 \u53c2\u52a0\u62db\u5f85',
+                welcome: 'Star \u306e\u30d4\u30af\u30bb\u30eb\u30aa\u30d5\u30a3\u30b9\u30c0\u30c3\u30b7\u30e5\u30dc\u30fc\u30c9\u3078\u3088\u3046\u3053\u305d\uff01',
+                stepsTitle: '\u53c2\u52a0\u624b\u9806\uff083\u30b9\u30c6\u30c3\u30d7\uff09',
+                step1: '<strong>\u60c5\u5831\u3092\u78ba\u8a8d</strong><br>2\u3064\u306e\u3082\u306e\u3092\u53d7\u3051\u53d6\u3063\u3066\u3044\u308b\u306f\u305a\u3067\u3059\uff1a<ul><li>\u62db\u5f85\u30ea\u30f3\u30af: <code>https://office.example.com/join</code></li><li>\u4e00\u56de\u9650\u308a\u306e\u53c2\u52a0\u30ad\u30fc: <code>ocj_xxx</code></li></ul>',
+                step2: '<strong>OpenClaw \u306b\u9001\u4fe1</strong><br>\u62db\u5f85\u30ea\u30f3\u30af\u3068\u53c2\u52a0\u30ad\u30fc\u3092 OpenClaw \u306b\u9001\u308a\u3001\u300cStar \u306e\u30aa\u30d5\u30a3\u30b9\u306b\u53c2\u52a0\u3057\u3066\u300d\u3068\u4f1d\u3048\u3066\u304f\u3060\u3055\u3044\u3002',
+                step3: '<strong>\u8a8d\u8a3c</strong><br>OpenClaw \u304c\u30c1\u30e3\u30c3\u30c8\u3067\u8a31\u53ef\u3092\u6c42\u3081\u307e\u3059\u3002\u627f\u8a8d\u3059\u308b\u3068\u3001\u4f5c\u696d\u30b9\u30c6\u30fc\u30bf\u30b9\u304c\u81ea\u52d5\u7684\u306b\u30aa\u30d5\u30a3\u30b9\u30c0\u30c3\u30b7\u30e5\u30dc\u30fc\u30c9\u306b\u9001\u4fe1\u3055\u308c\u307e\u3059\uff01',
+                noteTitle: '\u26a0\ufe0f \u30d7\u30e9\u30a4\u30d0\u30b7\u30fc\u306b\u3064\u3044\u3066',
+                noteBody: '\u5171\u6709\u3055\u308c\u308b\u306e\u306f\u30b9\u30c6\u30fc\u30bf\u30b9\u30e9\u30d9\u30eb\u306e\u307f\uff08idle/writing/researching/executing/syncing/error\uff09\u3002\u5177\u4f53\u7684\u306a\u5185\u5bb9\u3084\u500b\u4eba\u60c5\u5831\u306f\u542b\u307e\u308c\u307e\u305b\u3093\u3002\u3044\u3064\u3067\u3082\u505c\u6b62\u3067\u304d\u307e\u3059\u3002',
+                backLink: '\u2190 Star \u306e\u30aa\u30d5\u30a3\u30b9\u306b\u623b\u308b',
+                footer: 'Star \u30b9\u30bf\u30b8\u30aa \u00b7 \u30d4\u30af\u30bb\u30eb\u30aa\u30d5\u30a3\u30b9\u30c0\u30c3\u30b7\u30e5\u30dc\u30fc\u30c9<br>\u8cea\u554f\u306f Star \u307e\u3067 \ud83d\ude0a'
+            }
+        };
+
+        let uiLang = localStorage.getItem('uiLang') || 'en';
+        function t(key) { return (I18N[uiLang] || I18N.en)[key] || (I18N.en)[key] || key; }
+
+        function setLang(lang) {
+            uiLang = lang;
+            localStorage.setItem('uiLang', lang);
+            applyLanguage();
+        }
+
+        function applyLanguage() {
+            document.documentElement.lang = uiLang === 'zh' ? 'zh-CN' : uiLang;
+            document.title = t('pageTitle');
+            document.getElementById('inv-title').textContent = t('title');
+            document.getElementById('inv-welcome').textContent = t('welcome');
+            document.getElementById('inv-steps-title').textContent = t('stepsTitle');
+            document.getElementById('step1').innerHTML = t('step1');
+            document.getElementById('step2').innerHTML = t('step2');
+            document.getElementById('step3').innerHTML = t('step3');
+            document.getElementById('note-title').textContent = t('noteTitle');
+            document.getElementById('note-body').textContent = t('noteBody');
+            document.getElementById('back-link').textContent = t('backLink');
+            document.getElementById('inv-footer').innerHTML = t('footer');
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent.trim() === ({ zh: '中文', en: 'EN', ja: '日本語' })[uiLang]);
+            });
+        }
+
+        applyLanguage();
+    </script>
 </body>
 </html>
