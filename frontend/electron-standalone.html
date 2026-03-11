@@ -1431,6 +1431,70 @@
             user-select: none;
         }
 
+        /* Agent tooltip on click */
+        #agent-tooltip {
+            display: none;
+            position: absolute;
+            z-index: 9000;
+            pointer-events: none;
+            min-width: 180px;
+            max-width: 260px;
+            background: #1e1e30;
+            border: 3px solid #ffd700;
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-family: 'ArkPixel', 'Courier New', monospace;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,215,0,0.15);
+            animation: tooltipFadeIn 0.18s ease-out;
+        }
+        @keyframes tooltipFadeIn {
+            from { opacity: 0; transform: scale(0.92); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        #agent-tooltip .tt-name {
+            color: #ffd700;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 6px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        #agent-tooltip .tt-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 3px;
+            color: #cbd5e1;
+            font-size: 12px;
+        }
+        #agent-tooltip .tt-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 1px solid rgba(0,0,0,0.3);
+        }
+        #agent-tooltip .tt-detail {
+            color: #94a3b8;
+            font-size: 11px;
+            margin-top: 6px;
+            border-top: 1px solid #333;
+            padding-top: 6px;
+            line-height: 1.4;
+        }
+        #agent-tooltip .tt-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        #agent-tooltip .tt-badge.approved { background: #166534; color: #86efac; }
+        #agent-tooltip .tt-badge.pending  { background: #713f12; color: #fde68a; }
+        #agent-tooltip .tt-badge.rejected { background: #7f1d1d; color: #fca5a5; }
+        #agent-tooltip .tt-badge.offline  { background: #334155; color: #94a3b8; }
+        #agent-tooltip .tt-badge.main     { background: #4c1d95; color: #c4b5fd; }
+
         /* 手机端专属适配（不影响桌面） */
         @media (max-width: 900px), (pointer: coarse) {
             html, body {
@@ -1610,6 +1674,7 @@
     <div id="main-stage">
         <div id="game-container">
             <div id="status-text">Loading...</div>
+            <div id="agent-tooltip"></div>
             <div id="office-plaque-dom">
                 <span class="office-plaque-star">⭐</span>
                 <span id="office-plaque-text">Star’s Pixel Office</span>
@@ -4432,6 +4497,97 @@ function toggleBrokerPanel() {
             return arr[idx % arr.length];
         }
 
+        let _tooltipAgentId = null;
+
+        function showAgentTooltip(agentData, phaserX, phaserY) {
+            const tip = document.getElementById('agent-tooltip');
+            if (!tip) return;
+
+            const statusMaps = {
+                zh: { approved: '已授权', pending: '待授权', rejected: '已拒绝', offline: '离线' },
+                en: { approved: 'Approved', pending: 'Pending', rejected: 'Rejected', offline: 'Offline' },
+                ja: { approved: '承認済', pending: '承認待ち', rejected: '拒否', offline: 'オフライン' }
+            };
+            const stateMaps = {
+                zh: { idle: '待命', writing: '工作中', researching: '调研', executing: '执行', syncing: '同步', error: '报警' },
+                en: { idle: 'Idle', writing: 'Working', researching: 'Researching', executing: 'Executing', syncing: 'Syncing', error: 'Alert' },
+                ja: { idle: '待機', writing: '作業中', researching: '調査', executing: '実行', syncing: '同期', error: '警報' }
+            };
+            const roleMaps = {
+                zh: { main: '主人', guest: '访客' },
+                en: { main: 'Owner', guest: 'Visitor' },
+                ja: { main: 'オーナー', guest: '訪問者' }
+            };
+
+            const lang = typeof uiLang !== 'undefined' ? uiLang : 'en';
+            const name = agentData.name || 'Agent';
+            const isMain = !!agentData.isMain;
+            const authStatus = agentData.authStatus || (isMain ? 'approved' : 'pending');
+            const state = agentData.state || 'idle';
+            const detail = agentData.detail || agentData.statusMessage || '';
+
+            const statusLabel = (statusMaps[lang] || statusMaps.en)[authStatus] || authStatus;
+            const stateLabel = (stateMaps[lang] || stateMaps.en)[state] || state;
+            const roleLabel = (roleMaps[lang] || roleMaps.en)[isMain ? 'main' : 'guest'];
+
+            const dotColors = { approved: '#22c55e', pending: '#f59e0b', rejected: '#ef4444', offline: '#94a3b8' };
+            const dotColor = dotColors[authStatus] || '#94a3b8';
+            const badgeClass = isMain ? 'main' : authStatus;
+
+            let html = `<div class="tt-name">${name}</div>`;
+            html += `<div class="tt-row"><span class="tt-badge ${badgeClass}">${roleLabel}</span></div>`;
+            html += `<div class="tt-row"><span class="tt-dot" style="background:${dotColor}"></span>${statusLabel} · ${stateLabel}</div>`;
+            if (detail) {
+                html += `<div class="tt-detail">${detail}</div>`;
+            }
+
+            tip.innerHTML = html;
+            tip.style.display = 'block';
+
+            const container = document.getElementById('game-container');
+            const canvas = container ? container.querySelector('canvas') : null;
+            if (!canvas) return;
+
+            const scaleX = canvas.clientWidth / (game.scale.width || 1280);
+            const scaleY = canvas.clientHeight / (game.scale.height || 720);
+            let px = phaserX * scaleX;
+            let py = phaserY * scaleY;
+
+            const tipW = tip.offsetWidth;
+            const tipH = tip.offsetHeight;
+            const cw = canvas.clientWidth;
+            const ch = canvas.clientHeight;
+
+            px = px - tipW / 2;
+            py = py - tipH - 16;
+            if (px < 8) px = 8;
+            if (px + tipW > cw - 8) px = cw - tipW - 8;
+            if (py < 8) { py = phaserY * scaleY + 40; }
+
+            tip.style.left = px + 'px';
+            tip.style.top = py + 'px';
+            _tooltipAgentId = agentData.agentId || '__main__';
+        }
+
+        function hideAgentTooltip() {
+            const tip = document.getElementById('agent-tooltip');
+            if (tip) tip.style.display = 'none';
+            _tooltipAgentId = null;
+        }
+
+        function getMainAgentData() {
+            const mainAgent = (guestAgents || []).find(a => a.isMain);
+            return {
+                agentId: '__main__',
+                name: (mainAgent && mainAgent.name) || window.officeNameFromServer || 'Star',
+                isMain: true,
+                authStatus: 'approved',
+                state: currentState || 'idle',
+                detail: (statusText && statusText.textContent) || '',
+                statusMessage: ''
+            };
+        }
+
         function renderGuestAgentsInScene() {
             if (!game) return;
             const visitors = getMergedVisitors();
@@ -4514,6 +4670,13 @@ function toggleBrokerPanel() {
                         strokeThickness: 3
                     }).setOrigin(0.5);
                     nameText.setDepth(2601);
+
+                    sprite.setInteractive({ useHandCursor: true, pixelPerfect: false });
+                    sprite.on('pointerdown', () => {
+                        const fresh = getMergedVisitors().find(a => a.agentId === id) || agent;
+                        if (_tooltipAgentId === id) { hideAgentTooltip(); return; }
+                        showAgentTooltip(fresh, sprite.x, sprite.y - (sprite.displayHeight || 60));
+                    });
 
                     guestSprites[id] = { sprite, nameText };
                 } else {
@@ -4977,10 +5140,14 @@ function toggleBrokerPanel() {
             star.setOrigin(0.5);
             star.setScale(IDLE_STAR_SCALE);
             star.setAlpha(0.95);
-            star.setDepth(20); // Put Star on top of everything
-            // Default: idle shows Star idle animation
+            star.setDepth(20);
             star.setVisible(true);
             star.anims.play('star_idle', true);
+            star.setInteractive({ useHandCursor: true });
+            star.on('pointerdown', () => {
+                if (_tooltipAgentId === '__main__') { hideAgentTooltip(); return; }
+                showAgentTooltip(getMainAgentData(), star.x, star.y - (star.displayHeight / 2) - 10);
+            });
 
             // Sofa stays static when idle (no longer the main idle animation)
             sofa.anims.stop();
@@ -5129,13 +5296,22 @@ function toggleBrokerPanel() {
             errorBug.setScale(0.9); // shrink 10%
             errorBug.anims.play('error_bug', true);
             window.errorBug = errorBug;
+            errorBug.setInteractive({ useHandCursor: true });
+            errorBug.on('pointerdown', () => {
+                if (_tooltipAgentId === '__main__') { hideAgentTooltip(); return; }
+                showAgentTooltip(getMainAgentData(), errorBug.x, errorBug.y - (errorBug.displayHeight / 2) - 10);
+            });
             window.errorBugDir = 1; // 1 -> to right, -1 -> to left
             const starWorking = this.add.sprite(217, 343, 'star_working', 0).setOrigin(0.5);
             starWorking.setVisible(false);
             starWorking.setScale(0.9);
             starWorking.setDepth(900);  // starWorking under desk so desk partially covers it
-            // Store reference to starWorking for state logic
             window.starWorking = starWorking;
+            starWorking.setInteractive({ useHandCursor: true });
+            starWorking.on('pointerdown', () => {
+                if (_tooltipAgentId === '__main__') { hideAgentTooltip(); return; }
+                showAgentTooltip(getMainAgentData(), starWorking.x, starWorking.y - (starWorking.displayHeight / 2) - 10);
+            });
 
             // Sync animation sprite at (1157,592)
             const syncFrameTotal = Number(this.textures.get('sync_anim')?.frameTotal || 0);
@@ -5364,7 +5540,12 @@ function toggleBrokerPanel() {
                 coordsOverlay.style.top = (pointer.y + 18) + 'px';
             });
 
-            // 加载昨日 memo
+            game.input.on('pointerdown', (pointer, currentlyOver) => {
+                if (!currentlyOver || currentlyOver.length === 0) {
+                    hideAgentTooltip();
+                }
+            });
+
             loadMemo();
 
             fetchStatus();
