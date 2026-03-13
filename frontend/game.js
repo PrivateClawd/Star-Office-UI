@@ -66,11 +66,13 @@ async function loadMemo() {
       memoDate.textContent = data.date || '';
       memoContent.innerHTML = data.memo.replace(/\n/g, '<br>');
     } else {
-      memoContent.innerHTML = '<div id="memo-placeholder">No diary entry for yesterday</div>';
+      const noMemoText = typeof t === 'function' ? t('noMemoYesterday') : 'No diary entry for yesterday';
+      memoContent.innerHTML = '<div id="memo-placeholder">' + noMemoText + '</div>';
     }
   } catch (e) {
     console.error('Failed to load memo:', e);
-    memoContent.innerHTML = '<div id="memo-placeholder">Failed to load</div>';
+    const failedText = typeof t === 'function' ? t('memoLoadFailed') : 'Failed to load';
+    memoContent.innerHTML = '<div id="memo-placeholder">' + failedText + '</div>';
   }
 }
 
@@ -483,7 +485,9 @@ function create() {
   coordsToggle.addEventListener('click', () => {
     showCoords = !showCoords;
     coordsOverlay.style.display = showCoords ? 'block' : 'none';
-    coordsToggle.textContent = showCoords ? 'Hide Coords' : 'Show Coords';
+    const hideLabel = typeof t === 'function' ? t('hideCoords') : 'Hide Coords';
+    const showLabel = typeof t === 'function' ? t('showCoords') : 'Show Coords';
+    coordsToggle.textContent = showCoords ? hideLabel : showLabel;
     coordsToggle.style.background = showCoords ? '#e94560' : '#333';
   });
 

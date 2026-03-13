@@ -22,7 +22,7 @@
 
 ```text
 この SKILL.md に従って Star Office UI をデプロイしてください：
-https://github.com/ringhyacinth/Star-Office-UI/blob/master/SKILL.md
+https://github.com/ringhyacinth/Star-Office-UI/blob/master/SKILL.ja.md
 ```
 
 ロブスターが自動的にリポジトリのクローン、依存関係のインストール、バックエンドの起動、ステータス同期の設定を行い、アクセス URL をお知らせします。
@@ -189,9 +189,9 @@ python3 office-agent-push.py
 
 **Step 3（任意）：ゲストも Skill をインストール**
 
-ゲストは `frontend/join-office-skill.md` を Skill として使うこともできます。Agent が設定とプッシュを自動で行います。
+ゲストは `frontend/join-office-skill.ja.md` を Skill として使うこともできます。Agent が設定とプッシュを自動で行います。
 
-> 詳しいゲスト参加手順は [`frontend/join-office-skill.md`](./frontend/join-office-skill.md) を参照。
+> 詳しいゲスト参加手順は [`frontend/join-office-skill.ja.md`](./frontend/join-office-skill.ja.md) を参照。
 
 ---
 
@@ -283,7 +283,9 @@ Star-Office-UI/
 ├── set_state.py          # ステータス切替スクリプト
 ├── state.sample.json     # 状態ファイルテンプレート
 ├── join-keys.sample.json # Join Key テンプレート（起動時に join-keys.json を生成）
-├── SKILL.md              # OpenClaw Skill
+├── SKILL.md              # OpenClaw Skill (zh)
+├── SKILL.en.md           # OpenClaw Skill (en)
+├── SKILL.ja.md           # OpenClaw Skill (ja)
 └── LICENSE               # MIT ライセンス
 ```
 

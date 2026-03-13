@@ -22,7 +22,7 @@ If you're using [OpenClaw](https://github.com/openclaw/openclaw), just send this
 
 ```text
 Please follow this SKILL.md to deploy Star Office UI for me:
-https://github.com/ringhyacinth/Star-Office-UI/blob/master/SKILL.md
+https://github.com/ringhyacinth/Star-Office-UI/blob/master/SKILL.en.md
 ```
 
 Your lobster will automatically clone the repo, install dependencies, start the backend, configure status sync, and send you the access URL.
@@ -189,9 +189,9 @@ The script auto-joins and pushes status every 15 seconds. The guest will appear 
 
 **Step 3 (optional): Guest installs a Skill**
 
-Guests can also use `frontend/join-office-skill.md` as a Skill — their agent will handle setup and pushing automatically.
+Guests can also use `frontend/join-office-skill.en.md` as a Skill — their agent will handle setup and pushing automatically.
 
-> See [`frontend/join-office-skill.md`](./frontend/join-office-skill.md) for full guest onboarding instructions.
+> See [`frontend/join-office-skill.en.md`](./frontend/join-office-skill.en.md) for full guest onboarding instructions.
 
 ---
 
@@ -283,7 +283,9 @@ Star-Office-UI/
 ├── set_state.py          # Status switch script
 ├── state.sample.json     # State file template
 ├── join-keys.sample.json # Join key template (runtime generates join-keys.json)
-├── SKILL.md              # OpenClaw Skill
+├── SKILL.md              # OpenClaw Skill (zh)
+├── SKILL.en.md           # OpenClaw Skill (en)
+├── SKILL.ja.md           # OpenClaw Skill (ja)
 └── LICENSE               # MIT License
 ```
 

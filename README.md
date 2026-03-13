@@ -284,7 +284,9 @@ Star-Office-UI/
 ├── set_state.py          # 状态切换脚本
 ├── state.sample.json     # 状态文件模板
 ├── join-keys.sample.json # Join Key 模板（启动时生成 join-keys.json）
-├── SKILL.md              # OpenClaw Skill
+├── SKILL.md              # OpenClaw Skill (zh)
+├── SKILL.en.md           # OpenClaw Skill (en)
+├── SKILL.ja.md           # OpenClaw Skill (ja)
 └── LICENSE               # MIT 许可
 ```
 
